@@ -51,7 +51,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
             </h3>
             {showQuote &&
             <p className={'2xl:mt-0 xl:mt-1 lg:mt-0 sm:mt-2 mt-3 fly-in'}><span
-                className={`${welcomeProps.poiretOne.className} text-white fly-in`}> "Quality is more important than quantity. One home run is much better than two doubles." - Steve Jobs</span>
+                className={`${welcomeProps.poiretOne.className} text-white fly-in`}> &quot;Quality is more important than quantity. One home run is much better than two doubles.&quot; - Steve Jobs</span>
             </p>}
         </>)}
     </div>
