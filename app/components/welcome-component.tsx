@@ -42,7 +42,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
         incrementWelcomeText('Hi, I am Marinus!')
     }, []);
 
-    return <div className={'flex flex-col items-center justify-center text-center transform'}>
+    return <div className={'flex flex-col items-center justify-center text-center'}>
         <h1
             className={`font-fira-code mt-2.5 select-text font-medium sm:text-4xl 2xl:text-5xl bg-gradient-to-r from-red-600 via-yellow-500-800 to-white inline-block text-transparent bg-clip-text 
             md:text-5xl text-4xl`}>
