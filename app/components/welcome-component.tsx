@@ -1,5 +1,5 @@
 'use client'
-import {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import '../globals.css'
 import '../assets/styles/fly-in-animation.css';
 import '../assets/styles/cursor.css'
@@ -8,6 +8,7 @@ import {NextFont} from "next/dist/compiled/@next/font";
 interface WelcomeProps {
     nerdFont: NextFont,
     poiretOne: NextFont
+    setReady: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function WelcomeComponent(welcomeProps: WelcomeProps) {
@@ -21,24 +22,27 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
             let newText = '';
             setIsTyping(true);
             let interval = setInterval(() => {
+                newText += welcomeTextArray.shift();
+                setWelcomeText(newText);
                 if (welcomeTextArray.length === 0) {
                     clearInterval(interval);
                     setIsTyping(false);
                     setShowDescription(true);
                     setTimeout(() => {
                         setShowQuote(true);
+                        setTimeout(() => {
+                            welcomeProps.setReady(true);
+                        }, 250);
                     }, 500);
                     return;
                 }
-                newText += welcomeTextArray.shift();
-                setWelcomeText(newText);
-            }, 50);
+            }, 256);
         }
 
         incrementWelcomeText('Hi, I am Marinus!')
     }, []);
 
-    return <div className={'flex flex-col items-center justify-center text-center'}>
+    return <div className={'flex flex-col items-center justify-center text-center transform'}>
         <h1
             className={`font-fira-code mt-2.5 select-text font-medium sm:text-4xl 2xl:text-5xl bg-gradient-to-r from-red-600 via-yellow-500-800 to-white inline-block text-transparent bg-clip-text 
             md:text-5xl text-4xl`}>
