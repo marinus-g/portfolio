@@ -46,9 +46,7 @@ export default function Home() {
                                 width={1920} height={1080}></Image>
                         </div>
                     </>) || <div className={'brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] sm:h-[100px] sm:w-[100px] h-[100px] w-[100px]'}></div>}
-                    <div className={'transform transition-all duration-200 hover:translate-x-24'}>
                         {WelcomeComponent({poiretOne, nerdFont, setReady})}
-                    </div>
                 </div>
             </div>
             {ready && (<>
