@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState, useRef} from "react";
-import '../globals.css'
-import '../assets/styles/fly-in-animation.css';
-import '../assets/styles/cursor.css'
+import '../../globals.css'
+import '../../assets/styles/fly-in-animation.css';
+import '../../assets/styles/cursor.css'
 import {NextFont} from "next/dist/compiled/@next/font";
 
 interface WelcomeProps {
@@ -36,7 +36,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
                     }, 500);
                     return;
                 }
-            }, 256);
+            }, 1);
         }
 
         incrementWelcomeText('Hi, I am Marinus!')
