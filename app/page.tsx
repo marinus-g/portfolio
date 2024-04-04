@@ -30,8 +30,11 @@ export default function Home() {
         const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
         // Get the height of the other elements
-        const otherElementsHeight = document.getElementById('other-elements').offsetHeight;
+        const otherElementsHeight = document.getElementById('other-elements')?.offsetHeight;
 
+        if (otherElementsHeight == null) {
+            return;
+        }
         // Calculate the remaining height
         const remainingHeight = vh - otherElementsHeight;
 
