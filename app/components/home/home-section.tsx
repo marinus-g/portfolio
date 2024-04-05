@@ -105,9 +105,9 @@ function HomeSection(props: Props) {
                   ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''} 
                          text-white ${props.extraContentClasses ? props.extraContentClasses : ''}`}>
                         <div id={props.position} ref={titleRef}
-                             className={`flex flex-col w-2/5 items-center fly-in-if-in-view`}>
+                             className={`flex flex-col w-2/5 fly-in-if-in-view`}>
                             <h2
-                                className={`${nunitoMedium.className} text-6xl place-self-center`}>{props.title}</h2>
+                                className={`${nunitoMedium.className} text-6xl place-self-center mt-14`}>{props.title}</h2>
                             <p ref={descriptionRef}
                                className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[18px] w-full select-text
                                ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
