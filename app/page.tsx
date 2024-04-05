@@ -7,7 +7,7 @@ import './assets/styles/animations.css';
 import HomeSection from "@/app/components/home/home-section";
 import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
-import {read} from "node:fs";
+import { Position } from './components/home/home-section';
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -89,102 +89,98 @@ export default function Home() {
                 </div>
             </div>
             {ready && (<>
-                <div className={'h-screen flex flex-col w-[100vw] aspect-auto'}
-                     style={{
-                         backgroundColor: '#002',
-                         backgroundRepeat: 'no-repeat',
-                         backgroundSize: 'cover',
-                     }}>
-                    <div className={`flex flex-col items-center justify-center sm:mt-0 mt-5 mb-5`}>
-                        <h2 className={`${fireCodeSemiLight.className} text-4xl text-white fly-in`}>My Vision</h2>
-                        <div className={`w-2/5`}>
-                            <p className={`${poiretOne.className} text-white text-wrap leading-3 mt-2 fade-in`}>Lorem
-                                ipsum
-                                dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                                aliquyam
-                                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                clita
-                                kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                                dolor
-                                sit
-                                amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                dolore
-                                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                                ea
-                                rebum.
-                                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                ipsum
-                                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                                labore et
-                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                                dolores
-                                et ea
-                                rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-                                amet.
-
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel
-                                illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim
-                                qui
-                                blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-                                Lorem
-                                ipsum
-                                dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                                laoreet
-                                dolore magna aliquam erat volutpat.
-
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                nisl
-                                ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate
-                                velit
-                                esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
-                                accumsan et
-                                iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
-                                feugait
-                                nulla facilisi.
-
-                                Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod
-                                mazim
-                                placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                sed
-                                diam
-                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-                                enim
-                                ad
-                                minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                                ex ea
-                                commodo consequat.
-
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel
-                                illum dolore eu feugiat nulla facilisis.
-
-                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                sea
-                                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                                aliquyam
-                                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                clita
-                                kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                                dolor
-                                sit
-                                amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo
-                                eirmod
-                                eos
-                                erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd
-                                magna no
-                                rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem
-                                ipsum
-                                dolor sit amet, consetetur</p>
-                        </div>
-                    </div>
-                </div>
+                <HomeSection
+                    position={Position.LEFT}
+                    title={'My Vision'}
+                             description={'Lorem\n' +
+                                 '                                ipsum\n' +
+                                 '                                dolor sit amet, consetetur\n' +
+                                 '                                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna\n' +
+                                 '                                aliquyam\n' +
+                                 '                                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet\n' +
+                                 '                                clita\n' +
+                                 '                                kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum\n' +
+                                 '                                dolor\n' +
+                                 '                                sit\n' +
+                                 '                                amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et\n' +
+                                 '                                dolore\n' +
+                                 '                                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et\n' +
+                                 '                                ea\n' +
+                                 '                                rebum.\n' +
+                                 '                                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem\n' +
+                                 '                                ipsum\n' +
+                                 '                                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut\n' +
+                                 '                                labore et\n' +
+                                 '                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo\n' +
+                                 '                                dolores\n' +
+                                 '                                et ea\n' +
+                                 '                                rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit\n' +
+                                 '                                amet.\n' +
+                                 '\n' +
+                                 '                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,\n' +
+                                 '                                vel\n' +
+                                 '                                illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim\n' +
+                                 '                                qui\n' +
+                                 '                                blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.\n' +
+                                 '                                Lorem\n' +
+                                 '                                ipsum\n' +
+                                 '                                dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut\n' +
+                                 '                                laoreet\n' +
+                                 '                                dolore magna aliquam erat volutpat.\n' +
+                                 '\n' +
+                                 '                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis\n' +
+                                 '                                nisl\n' +
+                                 '                                ut\n' +
+                                 '                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in\n' +
+                                 '                                vulputate\n' +
+                                 '                                velit\n' +
+                                 '                                esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et\n' +
+                                 '                                accumsan et\n' +
+                                 '                                iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te\n' +
+                                 '                                feugait\n' +
+                                 '                                nulla facilisi.\n' +
+                                 '\n' +
+                                 '                                Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod\n' +
+                                 '                                mazim\n' +
+                                 '                                placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,\n' +
+                                 '                                sed\n' +
+                                 '                                diam\n' +
+                                 '                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi\n' +
+                                 '                                enim\n' +
+                                 '                                ad\n' +
+                                 '                                minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip\n' +
+                                 '                                ex ea\n' +
+                                 '                                commodo consequat.\n' +
+                                 '\n' +
+                                 '                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,\n' +
+                                 '                                vel\n' +
+                                 '                                illum dolore eu feugiat nulla facilisis.\n' +
+                                 '\n' +
+                                 '                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no\n' +
+                                 '                                sea\n' +
+                                 '                                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur\n' +
+                                 '                                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna\n' +
+                                 '                                aliquyam\n' +
+                                 '                                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet\n' +
+                                 '                                clita\n' +
+                                 '                                kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum\n' +
+                                 '                                dolor\n' +
+                                 '                                sit\n' +
+                                 '                                amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo\n' +
+                                 '                                eirmod\n' +
+                                 '                                eos\n' +
+                                 '                                erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd\n' +
+                                 '                                magna no\n' +
+                                 '                                rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem\n' +
+                                 '                                ipsum\n' +
+                                 '                                dolor sit amet, consetetur!'} background={{
+                    backgroundColor: '#002',
+                    backgroundRepeat: 'no-repeat',
+                }}/>
                 {Spacer('h-12', '#001e4e')}
-                <HomeSection title={'My Skills'}
+                <HomeSection
+                    position={Position.RIGHT}
+                    title={'My Skills'}
                              description={'Lorem\n' +
                                  '                                ipsum\n' +
                                  '                                dolor sit amet, consetetur\n' +

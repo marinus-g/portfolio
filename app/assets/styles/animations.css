@@ -9,6 +9,28 @@
     }
 }
 
+@keyframes flyInFromRight {
+    0% {
+        transform: translateX(-25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flyInFromLeft {
+    0% {
+        transform: translateX(25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -33,7 +55,19 @@
 
 .fly-in-if-in-view {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateX(-100%);
+    transition: opacity 1s, transform 1s;
+}
+
+.fly-in-if-in-view-left {
+    opacity: 0;
+    transform: translateX(25%);
+    transition: opacity 1s, transform 1s;
+}
+
+.fly-in-if-in-view-right {
+    opacity: 0;
+    transform: translateX(-50%);
     transition: opacity 1s, transform 1s;
 }
 
@@ -42,11 +76,18 @@
     transition: opacity 1.9s;
 }
 
-.fade-in-if-in-view.in-view {
+.fade-in-if-in-view.in-view-left {
     animation: fadeIn 1.9s ease-out forwards;
 }
-.fly-in-if-in-view.in-view {
-    animation: flyInFromTop 1s ease-out forwards;
+.fly-in-if-in-view.in-view-left {
+    animation: flyInFromLeft 1s ease-out forwards;
+}
+
+.fade-in-if-in-view.in-view-right {
+    animation: fadeIn 1.9s ease-out forwards;
+}
+.fly-in-if-in-view.in-view-right {
+    animation: flyInFromRight 1s ease-out forwards;
 }
 
 .fade-in {
