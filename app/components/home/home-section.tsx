@@ -2,8 +2,6 @@
 import localFont from "next/font/local";
 import {useEffect, useRef, useState} from "react";
 import '../../assets/styles/animations.css';
-import {number} from "prop-types";
-
 const poiretOne = localFont({
     src: './../../assets/fonts/PoiretOne-Regular.ttf',
     display: 'swap',
@@ -31,6 +29,7 @@ interface Props {
     background: BackgroundProps
     extraClasses?: string
     extraContentClasses?: string,
+    extraComponent?: React.ReactNode
 }
 
 export enum Position {
@@ -55,21 +54,21 @@ function HomeSection(props: Props) {
 
                 const scrollPosition = window.pageYOffset;
 
-                    titleTimeout = setTimeout(() => {
-                        if (entry.isIntersecting) {
-                            if (entry.target.classList.contains('in-view' + props.position)) {
-                                return;
-                            }
-                            entry.target.classList.add('in-view-' + props.position);
-                            if (descriptionRef.current) descriptionRef.current.classList.add('in-view-' + props.position)
-                        } else {
-                            if (scrollPosition >= elementTop) {
-                                return;
-                            }
-                            entry.target.classList.remove('in-view-' + props.position);
-                            if (descriptionRef.current) descriptionRef.current.classList.remove('in-view-' + props.position)
+                titleTimeout = setTimeout(() => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('in-view' + props.position)) {
+                            return;
                         }
-                    }, 100);
+                        entry.target.classList.add('in-view-' + props.position);
+                        if (descriptionRef.current) descriptionRef.current.classList.add('in-view-' + props.position)
+                    } else {
+                        if (scrollPosition >= elementTop) {
+                            return;
+                        }
+                        entry.target.classList.remove('in-view-' + props.position);
+                        if (descriptionRef.current) descriptionRef.current.classList.remove('in-view-' + props.position)
+                    }
+                }, 100);
 
             },
             {
@@ -96,7 +95,7 @@ function HomeSection(props: Props) {
         <>
             <div className={`flex flex-row w-100[vw] h-min`}>
                 <div
-                    className={`flex flex-col w-[100vw] pt-14 pb-14
+                    className={`flex flex-row w-[100vw] pt-14 pb-14
                  aspect-auto ${props.extraClasses ? props.extraClasses : ''} `}
                     style={props.background}>
                     <div // TODO IF CENTERED??? sm:justify-self-center
@@ -105,7 +104,8 @@ function HomeSection(props: Props) {
                   ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:mr-16 text-left' : ''}
                   ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''} 
                          text-white ${props.extraContentClasses ? props.extraContentClasses : ''}`}>
-                        <div id={props.position} ref={titleRef} className={`flex flex-col w-2/5 items-center fly-in-if-in-view`}>
+                        <div id={props.position} ref={titleRef}
+                             className={`flex flex-col w-2/5 items-center fly-in-if-in-view`}>
                             <h2
                                 className={`${nunitoMedium.className} text-6xl place-self-center`}>{props.title}</h2>
                             <p ref={descriptionRef}
@@ -113,6 +113,7 @@ function HomeSection(props: Props) {
                                ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
+                    {props.extraComponent ? props.extraComponent : null}
                 </div>
             </div>
         </>

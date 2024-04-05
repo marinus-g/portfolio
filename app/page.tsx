@@ -7,7 +7,8 @@ import './assets/styles/animations.css';
 import HomeSection from "@/app/components/home/home-section";
 import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
-import { Position } from './components/home/home-section';
+import { Position } from './components/home/home-section';// @ts-ignore
+import {ReactComponent as Eye} from './assets/svgs/eye.svg';
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -177,10 +178,12 @@ export default function Home() {
                     backgroundColor: '#002',
                     backgroundRepeat: 'no-repeat',
                 }}/>
-                {Spacer('h-12', '#001e4e')}
+                {/*Spacer('h-12', '#51518C')*/}
+                <div className={'items-center'}></div>
                 <HomeSection
                     position={Position.RIGHT}
                     title={'My Skills'}
+                    extraClasses={'h-[80vh] items-center'}
                              description={'Lorem\n' +
                                  '                                ipsum\n' +
                                  '                                dolor sit amet, consetetur\n' +
@@ -263,7 +266,7 @@ export default function Home() {
                                  '                                rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem\n' +
                                  '                                ipsum\n' +
                                  '                                dolor sit amet, consetetur!'} background={{
-                    backgroundColor: '#00008B',
+                    backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
                     backgroundRepeat: 'no-repeat',
                 }}/>
                 {Spacer('h-56', '#002')}
