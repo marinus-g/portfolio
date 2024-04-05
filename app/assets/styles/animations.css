@@ -18,6 +18,15 @@
     }
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 .fly-in {
     animation: flyInFromTop 1s ease-out forwards;
 }
@@ -42,4 +51,13 @@
 
 .fade-in {
     animation: fadeIn 2.9s ease-in forwards;
+    opacity: 0;
+}
+
+.nav-fade-in {
+    animation: fadeIn .4s ease-in forwards;
+}
+
+.nav-fade-out {
+    animation: fadeOut .4s ease-in forwards;
 }

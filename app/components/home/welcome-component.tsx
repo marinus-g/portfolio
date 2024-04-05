@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState, useRef} from "react";
 import '../../globals.css'
-import '../../assets/styles/fly-in-animation.css';
+import '../../assets/styles/animations.css';
 import '../../assets/styles/cursor.css'
 import {NextFont} from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
@@ -27,6 +27,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
     const [isTyping, setIsTyping] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
     const [showQuote, setShowQuote] = useState(false);
+    const { setReady } = welcomeProps;
     useEffect(() => {
         function incrementWelcomeText(wantedText: string) {
             let welcomeTextArray = wantedText.split('');
@@ -42,26 +43,27 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
                     setTimeout(() => {
                         setShowQuote(true);
                         setTimeout(() => {
-                            welcomeProps.setReady(true);
+                            setReady(true);
                         }, 250);
                     }, 500);
                     return;
                 }
-            }, 256);
+            }, 2);
         }
 
         incrementWelcomeText('Hi, I am Marinus!')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div className={'flex flex-col items-center justify-center text-center'}>
         <h1 //  bg-gradient-to-r from-red-600 via-yellow-500-800 to-white
             className={`${spaceMonoBold.className} mt-2.5 select-text font-medium sm:text-9xl 2xl:text-7xl text-black inline-block 
-            md:text-9xl text-9xl`}>
+            md:text-3xl text-4xl`}>
             {welcomeText}{isTyping && <span className={'cursor text-black'}>|</span>}
         </h1>
         {showDescription && (<>
             <h3
-                className={`${welcomeProps.nerdFont.className} select-text font-light text-3xl 2xl:text-4xl text-black mt-3.5 fly-in md:text-2xl text-[18px] leading-4`}>I am
+                className={`${welcomeProps.nerdFont.className} select-text font-light 2xl:text-4xl text-black mt-2.5 sm:mt-3.5 fly-in sm:text-5xl text-2xl leading-4`}>I am
                 a
                 Software Developer interested in developing software for the general public.
             </h3>

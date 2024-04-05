@@ -3,10 +3,11 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import WelcomeComponent from "@/app/components/home/welcome-component";
 import {useEffect, useRef, useState} from "react";
-import './assets/styles/fly-in-animation.css';
+import './assets/styles/animations.css';
 import HomeSection from "@/app/components/home/home-section";
 import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
+import {read} from "node:fs";
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -27,6 +28,7 @@ export default function Home() {
     const [ready, setReady] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
+    const [navbar, setNavbar] = useState(false);
 
     useEffect(() => {
         // Get the viewport height
@@ -44,9 +46,19 @@ export default function Home() {
             setLoaded(true)
         }
     }, []);
+    useEffect(() => {
+        if (ready) {
+            setNavbar(true);
+        } else {
+            setNavbar(false);
+        }
+    }, [ready]);
     return (
         <main className={`flex flex-col relative select-none overflow-x-hidden ${loaded ? 'overflow-y-hidden' : ''}`}>
-            {Navbar(true)}
+            {Navbar({
+                home: true,
+                showNavbar: navbar
+            })}
             <div
                 id={'other-elements'}
                 className="flex flex-col
@@ -77,14 +89,13 @@ export default function Home() {
                 </div>
             </div>
             {ready && (<>
-                <div className={'flex flex-col w-[100vw] aspect-auto'}
+                <div className={'h-screen flex flex-col w-[100vw] aspect-auto'}
                      style={{
-                         backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9IiMwMDIiPjwvcmVjdD48cGF0aCBkPSJNMCA1MDFMMzg0IDU2Mkw3NjggNTMyTDExNTIgNTIzTDE1MzYgNTc0TDE5MjAgNjA3TDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiMzMjJjMmMiPjwvcGF0aD48cGF0aCBkPSJNMCA2OTFMMzg0IDU3OUw3NjggNjY2TDExNTIgNjkwTDE1MzYgNjg1TDE5MjAgNjEyTDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiM1NzJlMzkiPjwvcGF0aD48cGF0aCBkPSJNMCA3MTZMMzg0IDczNkw3NjggNzE4TDExNTIgNjc3TDE1MzYgNzM0TDE5MjAgNjc2TDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiM3NTJlNTciPjwvcGF0aD48cGF0aCBkPSJNMCA3NzRMMzg0IDc4MEw3NjggODI0TDExNTIgODE0TDE1MzYgODIzTDE5MjAgNzg0TDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiM4NjMzODUiPjwvcGF0aD48cGF0aCBkPSJNMCA4ODBMMzg0IDg3M0w3NjggODU2TDExNTIgODU5TDE1MzYgODYxTDE5MjAgOTA2TDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiM3YzQ3YmYiPjwvcGF0aD48cGF0aCBkPSJNMCA5MzVMMzg0IDk3M0w3NjggOTU0TDExNTIgOTU3TDE1MzYgOTcxTDE5MjAgOTMzTDE5MjAgMTA4MUwxNTM2IDEwODFMMTE1MiAxMDgxTDc2OCAxMDgxTDM4NCAxMDgxTDAgMTA4MVoiIGZpbGw9IiMwMDY2ZmYiPjwvcGF0aD48L3N2Zz4=")',
+                         backgroundColor: '#002',
                          backgroundRepeat: 'no-repeat',
                          backgroundSize: 'cover',
-                         height: '100vh',
                      }}>
-                    <div className={`flex flex-col items-center justify-center sm:mt-0 mt-5`}>
+                    <div className={`flex flex-col items-center justify-center sm:mt-0 mt-5 mb-5`}>
                         <h2 className={`${fireCodeSemiLight.className} text-4xl text-white fly-in`}>My Vision</h2>
                         <div className={`w-2/5`}>
                             <p className={`${poiretOne.className} text-white text-wrap leading-3 mt-2 fade-in`}>Lorem
@@ -172,14 +183,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className={'h-72 w-screen'}
-                style={{
-                    backgroundRepeat: 'no-repeat',
-                    backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgOTYwIDU0MCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIGZpbGw9IiMwMDIiPjwvcmVjdD48cGF0aCBkPSJNMCA4NUwxMzcgOTFMMjc0IDEwNkw0MTEgMTIzTDU0OSA4Nkw2ODYgMTAxTDgyMyA4OEw5NjAgMTE0TDk2MCAwTDgyMyAwTDY4NiAwTDU0OSAwTDQxMSAwTDI3NCAwTDEzNyAwTDAgMFoiIGZpbGw9IiMzMjJjMmMiPjwvcGF0aD48cGF0aCBkPSJNMCAxMDZMMTM3IDc3TDI3NCAxMTNMNDExIDcyTDU0OSA5Nkw2ODYgODNMODIzIDc4TDk2MCA4M0w5NjAgMEw4MjMgMEw2ODYgMEw1NDkgMEw0MTEgMEwyNzQgMEwxMzcgMEwwIDBaIiBmaWxsPSIjNTcyZTM5Ij48L3BhdGg+PHBhdGggZD0iTTAgNzdMMTM3IDc4TDI3NCA3MUw0MTEgNzBMNTQ5IDYzTDY4NiA2NEw4MjMgNzBMOTYwIDc2TDk2MCAwTDgyMyAwTDY4NiAwTDU0OSAwTDQxMSAwTDI3NCAwTDEzNyAwTDAgMFoiIGZpbGw9IiM3NTJlNTciPjwvcGF0aD48cGF0aCBkPSJNMCA1NUwxMzcgNjNMMjc0IDYwTDQxMSA2Nkw1NDkgNTdMNjg2IDUxTDgyMyA1OUw5NjAgNTNMOTYwIDBMODIzIDBMNjg2IDBMNTQ5IDBMNDExIDBMMjc0IDBMMTM3IDBMMCAwWiIgZmlsbD0iIzg2MzM4NSI+PC9wYXRoPjxwYXRoIGQ9Ik0wIDM3TDEzNyAyOEwyNzQgMjVMNDExIDI2TDU0OSAyNkw2ODYgNDlMODIzIDQzTDk2MCA0OUw5NjAgMEw4MjMgMEw2ODYgMEw1NDkgMEw0MTEgMEwyNzQgMEwxMzcgMEwwIDBaIiBmaWxsPSIjN2M0N2JmIj48L3BhdGg+PHBhdGggZD0iTTAgMjdMMTM3IDI5TDI3NCAyMkw0MTEgMThMNTQ5IDE0TDY4NiAxM0w4MjMgMjNMOTYwIDIxTDk2MCAwTDgyMyAwTDY4NiAwTDU0OSAwTDQxMSAwTDI3NCAwTDEzNyAwTDAgMFoiIGZpbGw9IiMwMDY2ZmYiPjwvcGF0aD48L3N2Zz4=")',
-                    backgroundSize: 'cover',
-                }}>
-                </div>
-                {Spacer('h-24', '#002')}
+                {Spacer('h-12', '#001e4e')}
                 <HomeSection title={'My Skills'}
                              description={'Lorem\n' +
                                  '                                ipsum\n' +
@@ -263,7 +267,7 @@ export default function Home() {
                                  '                                rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem\n' +
                                  '                                ipsum\n' +
                                  '                                dolor sit amet, consetetur!'} background={{
-                    backgroundColor: '#002',
+                    backgroundColor: '#00008B',
                     backgroundRepeat: 'no-repeat',
                 }}/>
                 {Spacer('h-56', '#002')}

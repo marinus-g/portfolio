@@ -1,7 +1,7 @@
 'use client'
 import localFont from "next/font/local";
 import {useEffect, useRef, useState} from "react";
-import '../../assets/styles/fly-in-animation.css';
+import '../../assets/styles/animations.css';
 import {number} from "prop-types";
 
 const poiretOne = localFont({
@@ -10,7 +10,17 @@ const poiretOne = localFont({
 })
 
 const fireCodeSemiLight = localFont({
-    src: './../../assets/fonts/FiraCode-Light.ttf',
+    src: './../../assets/fonts/FiraCode-Regular.ttf',
+    display: 'swap',
+});
+
+const spaceMonoBold = localFont({
+    src: './../../assets/fonts/SpaceMono-Bold.ttf',
+    display: 'swap',
+});
+
+const poppinsMedium = localFont({
+    src: './../../assets/fonts/Poppins-Regular.ttf',
     display: 'swap',
 });
 
@@ -59,7 +69,7 @@ function HomeSection(props: Props) {
             {
                 root: null,
                 rootMargin: `0px`,
-               // threshold: [0, 0.25, 0.5, 0.75, 1]
+                // threshold: [0, 0.25, 0.5, 0.75, 1]
                 threshold: 0
                 //threshold: 0.1
             }
@@ -79,15 +89,15 @@ function HomeSection(props: Props) {
     return (
         <>
             <div
-                className={`flex flex-col w-[100vw] aspect-auto ${props.extraClasses ? props.extraClasses : ''}`}
+                className={`flex flex-col w-[100vw] pt-14 pb-14 aspect-auto ${props.extraClasses ? props.extraClasses : ''}`}
                 style={props.background}>
                 <div
                     className={`flex flex-col items-center justify-center text-white ${props.extraContentClasses ? props.extraContentClasses : ''}`}>
                     <h2 id={'title'} ref={titleRef}
-                        className={`${fireCodeSemiLight.className} text-4xl fly-in-if-in-view`}>{props.title}</h2>
+                        className={`${fireCodeSemiLight.className} text-6xl fly-in-if-in-view`}>{props.title}</h2>
                     <div className={`w-2/5`}>
                         <p ref={descriptionRef}
-                           className={`${poiretOne.className} text-white text-wrap leading-3 mt-2 fade-in-if-in-view`}>{props.description}</p>
+                           className={`${poppinsMedium.className} text-white text-wrap leading-5 mt-5 fade-in-if-in-view text-[16px]`}>{props.description}</p>
                     </div>
                 </div>
             </div>
