@@ -109,7 +109,7 @@ function HomeSection(props: Props) {
                             <h2
                                 className={`${nunitoMedium.className} text-6xl place-self-center`}>{props.title}</h2>
                             <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[16px] w-full select-text
+                               className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[18px] w-full select-text
                                ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
