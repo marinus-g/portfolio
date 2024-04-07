@@ -93,10 +93,10 @@ function HomeSection(props: Props) {
 
     return (
         <>
-            <div className={`flex flex-row w-100[vw] h-min`}>
+            <div className={`flex flex-row w-100[vw] ${props.extraClasses ? props.extraClasses : ''}`}>
                 <div
-                    className={`flex flex-row w-[100vw] pt-14 pb-14
-                 aspect-auto ${props.extraClasses ? props.extraClasses : ''} `}
+                    className={`flex flex-row w-[100vw] pt-16 pb-12
+                 aspect-auto`}
                     style={props.background}>
                     <div // TODO IF CENTERED??? sm:justify-self-center
                         className={`flex flex-col 
@@ -107,9 +107,9 @@ function HomeSection(props: Props) {
                         <div id={props.position} ref={titleRef}
                              className={`flex flex-col w-2/5 fly-in-if-in-view`}>
                             <h2
-                                className={`${nunitoMedium.className} text-6xl place-self-center mt-14`}>{props.title}</h2>
+                                className={`${nunitoMedium.className} text-9xl`}>{props.title}</h2>
                             <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[18px] w-full select-text
+                               className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[26px] w-full select-text
                                ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
