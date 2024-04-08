@@ -1,7 +1,8 @@
 'use client'
 import localFont from "next/font/local";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../../assets/styles/animations.css';
+
 const poiretOne = localFont({
     src: './../../assets/fonts/PoiretOne-Regular.ttf',
     display: 'swap',
@@ -26,10 +27,10 @@ interface Props {
     position: Position,
     title: string,
     description: string,
-    background: BackgroundProps
-    extraClasses?: string
+    background: BackgroundProps,
+    extraClasses?: string,
     extraContentClasses?: string,
-    extraComponent?: React.ReactNode
+    extraComponent?: React.ReactNode,
 }
 
 export enum Position {
@@ -46,6 +47,7 @@ interface BackgroundProps {
 function HomeSection(props: Props) {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const descriptionRef = useRef<HTMLParagraphElement>(null);
+    const icon = useRef<HTMLHeadingElement>(null)
     useEffect(() => {
         let titleTimeout: NodeJS.Timeout;
         const observer = new IntersectionObserver(
@@ -93,27 +95,37 @@ function HomeSection(props: Props) {
 
     return (
         <>
-            <div className={`flex flex-row w-100[vw] ${props.extraClasses ? props.extraClasses : ''}`}>
+            <div className={`flex flex-row w-max ${props.extraClasses ? props.extraClasses : ''}`}>
                 <div
                     className={`flex flex-row w-[100vw] pt-16 pb-12
-                 aspect-auto`}
+             aspect-auto`}
                     style={props.background}>
-                    <div // TODO IF CENTERED??? sm:justify-self-center
-                        className={`flex flex-col 
-                         ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16' : ''}
-                  ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:mr-16 text-left' : ''}
-                  ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''} 
-                         text-white ${props.extraContentClasses ? props.extraContentClasses : ''}`}>
+                    {props.position === Position.RIGHT && props.extraComponent ?
+                        (<div className={`overflow-auto sm:mr-12 pt-14`} style={{padding: '16px'}}>
+                            {props.extraComponent}
+                        </div>) : null}
+                    <div
+                        id={'test-id'}
+                        className={`flex flex-col ml-auto
+    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[70vw]' : ''}
+    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[70vw] ' : ''}
+    ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''}
+    text-white ${props.extraContentClasses ? props.extraContentClasses : ''}} o-r`}>
                         <div id={props.position} ref={titleRef}
-                             className={`flex flex-col w-2/5 fly-in-if-in-view`}>
+                             className={`flex flex-col w-[80%] fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
                             <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-400 leading-7 mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
-                               ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
+                               className={`${interRegular.className} text-gray-400 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
+                           ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
-                    {props.extraComponent ? props.extraComponent : null}
+                    {props.position !== Position.RIGHT && props.extraComponent ?
+                        (<div className={
+                            `overflow-auto
+                        sm:ml-12 justify-self-start place-self-start pt-14`}>
+                            {props.extraComponent}
+                        </div>) : null}
                 </div>
             </div>
         </>

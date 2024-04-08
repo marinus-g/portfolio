@@ -5,7 +5,6 @@ import '../../assets/styles/animations.css';
 import '../../assets/styles/cursor.css'
 import {NextFont} from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
-
 interface WelcomeProps {
     nerdFont: NextFont,
     poiretOne: NextFont

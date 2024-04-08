@@ -9,6 +9,8 @@ import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
 import {Position} from './components/home/home-section';// @ts-ignore
 import {ReactComponent as Eye} from './assets/svgs/eye.svg';
+import {ReactComponent as LightBulb} from './assets/svgs/light-bulb.svg';
+import {ReactComponent as Computer} from './assets/svgs/computer.svg';
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -100,6 +102,7 @@ export default function Home() {
                 <HomeSection
                     position={Position.LEFT}
                     title={'My Vision'}
+                    extraComponent={<LightBulb className={'w-max h-max]'}/>}
                     extraClasses={`h-[${homeSectionHeight}]`}
                     description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
                     background={{
@@ -111,6 +114,7 @@ export default function Home() {
                 <HomeSection
                     position={Position.RIGHT}
                     title={'My Skills'}
+                    extraComponent={<Computer className={'w-max h-max ml-36'}/>}
                     extraClasses={'h-auto items-center'}
                     description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'} background={{
                     backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
