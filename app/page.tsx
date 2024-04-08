@@ -19,12 +19,10 @@ const nerdFont = localFont({
     src: './assets/fonts/nerdfont-codensed.ttf',
     display: 'swap',
 });
-
-const fireCodeSemiLight = localFont({
+localFont({
     src: './assets/fonts/FiraCode-Light.ttf',
     display: 'swap',
 });
-
 export default function Home() {
 
     const [ready, setReady] = useState(false);
@@ -101,7 +99,7 @@ export default function Home() {
                 <HomeSection
                     position={Position.LEFT}
                     title={'My Vision'}
-                    extraComponent={<LightBulb className={'overflow-hidden sm:w-[160px] sm:h-[160px] md:w-auto md:h-auto w-[50px] h-[50px] mt-16'}/>}
+                    extraComponent={<LightBulb className={'sm:w-[160px] sm:h-[160px] md:w-min md:h-min w-[50px] h-[50px] mt-16'}/>}
                     extraClasses={`h-[${homeSectionHeight}]`}
                     description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
                     background={{
@@ -109,11 +107,11 @@ export default function Home() {
                         backgroundRepeat: 'no-repeat',
                     }}/>
                 {/*Spacer('h-12', '#51518C')*/}
-                <div className={'items-center'}></div>
+                {Spacer('w-screen h-16', '#002')}
                 <HomeSection
                     position={Position.RIGHT}
                     title={'My Skills'}
-                    extraComponent={<Computer className={'overflow-hidden w-auto h-auto mt-24'}/>}
+                    extraComponent={<Computer className={'sm:w-[160px] sm:h-[160px] md:w-min md:h-min w-[50px] h-[50px] mt-16'}/>}
                     description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'} background={{
                     backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
                     backgroundRepeat: 'no-repeat',
