@@ -47,7 +47,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
                     }, 500);
                     return;
                 }
-            }, 2);
+            }, 187);
         }
 
         incrementWelcomeText('Hi, I am Marinus!')
