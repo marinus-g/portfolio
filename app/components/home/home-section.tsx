@@ -7,8 +7,8 @@ const poiretOne = localFont({
     display: 'swap',
 })
 
-const nunitoMedium = localFont({
-    src: './../../assets/fonts/Nunito-Medium.ttf',
+const openSans = localFont({
+    src: './../../assets/fonts/OpenSans-Regular.ttf',
     display: 'swap',
 });
 
@@ -107,9 +107,9 @@ function HomeSection(props: Props) {
                         <div id={props.position} ref={titleRef}
                              className={`flex flex-col w-2/5 fly-in-if-in-view`}>
                             <h2
-                                className={`${nunitoMedium.className} text-9xl`}>{props.title}</h2>
+                                className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
                             <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-400 leading-5 mt-5 fade-in-if-in-view text-[26px] w-full select-text
+                               className={`${interRegular.className} text-gray-400 leading-7 mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
                                ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
