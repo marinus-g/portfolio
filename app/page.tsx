@@ -19,10 +19,7 @@ const nerdFont = localFont({
     src: './assets/fonts/nerdfont-codensed.ttf',
     display: 'swap',
 });
-localFont({
-    src: './assets/fonts/FiraCode-Light.ttf',
-    display: 'swap',
-});
+
 export default function Home() {
 
     const [ready, setReady] = useState(false);

@@ -2,16 +2,9 @@
 import localFont from "next/font/local";
 import React, {useEffect, useRef} from "react";
 import '../../assets/styles/animations.css';
-localFont({
-    src: './../../assets/fonts/PoiretOne-Regular.ttf',
-    display: 'swap',
-});
+
 const openSans = localFont({
     src: './../../assets/fonts/OpenSans-Regular.ttf',
-    display: 'swap',
-});
-localFont({
-    src: './../../assets/fonts/SpaceMono-Bold.ttf',
     display: 'swap',
 });
 const interRegular = localFont({
