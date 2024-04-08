@@ -1,24 +1,19 @@
 'use client'
 import localFont from "next/font/local";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import '../../assets/styles/animations.css';
-import {booleanLiteral} from "@babel/types";
-
-const poiretOne = localFont({
+localFont({
     src: './../../assets/fonts/PoiretOne-Regular.ttf',
     display: 'swap',
-})
-
+});
 const openSans = localFont({
     src: './../../assets/fonts/OpenSans-Regular.ttf',
     display: 'swap',
 });
-
-const spaceMonoBold = localFont({
+localFont({
     src: './../../assets/fonts/SpaceMono-Bold.ttf',
     display: 'swap',
 });
-
 const interRegular = localFont({
     src: './../../assets/fonts/Inter-Regular.ttf',
     display: 'swap',
@@ -57,7 +52,6 @@ function HomeSection(props: Props) {
                 const scrollPosition = window.pageYOffset;
                 titleTimeout = setTimeout(() => {
                     let iconPos = props.position;
-                    let isIcon = false;
                     switch (iconPos) {
                         case Position.LEFT:
                             iconPos = Position.RIGHT;
@@ -122,15 +116,16 @@ function HomeSection(props: Props) {
              aspect-auto`}
                     style={props.background}>
                     {props.position === Position.RIGHT && props.extraComponent ?
-                        (<div id={'icon'} ref={icon} className={`overflow-auto sm:ml-12 pt-14 fly-in-if-in-view p-16 h-min`}
-                             >
+                        (<div id={'icon'} ref={icon}
+                              className={`flex flex-col sm:ml-36 pt-14 fly-in-if-in-view p-16 h-auto w-auto`}
+                        >
                             {props.extraComponent}
                         </div>) : null}
                     <div
                         id={'test-id'}
                         className={`flex flex-col ml-auto
-    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[70vw] mt-16' : ''}
-    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[70vw] mt-16' : ''}
+    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[100vw] mt-16' : ''}
+    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[100vw] mt-16' : ''}
     ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''}
     text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
                         <div id={props.position} ref={titleRef}
@@ -144,8 +139,8 @@ function HomeSection(props: Props) {
                     </div>
                     {props.position !== Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon} className={
-                            `overflow-auto
-                        sm:mr-12 justify-self-start place-self-start pt-14 fly-in-if-in-view p-16`}>
+                            `flex flex-col h-auto w-auto
+                        sm:mr-36 justify-self-start place-self-start pt-14 fly-in-if-in-view p-16`}>
                             {props.extraComponent}
                         </div>) : null}
                 </div>
