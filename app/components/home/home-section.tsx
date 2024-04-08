@@ -2,6 +2,7 @@
 import localFont from "next/font/local";
 import React, {useEffect, useRef, useState} from "react";
 import '../../assets/styles/animations.css';
+import {booleanLiteral} from "@babel/types";
 
 const poiretOne = localFont({
     src: './../../assets/fonts/PoiretOne-Regular.ttf',
@@ -53,22 +54,42 @@ function HomeSection(props: Props) {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 const elementTop = entry.target.getBoundingClientRect().top;
-
                 const scrollPosition = window.pageYOffset;
-
                 titleTimeout = setTimeout(() => {
+                    let iconPos = props.position;
+                    let isIcon = false;
+                    switch (iconPos) {
+                        case Position.LEFT:
+                            iconPos = Position.RIGHT;
+                            break;
+                        case Position.RIGHT:
+                            iconPos = Position.LEFT;
+                            break;
+                        default:
+                            break;
+                    }
                     if (entry.isIntersecting) {
                         if (entry.target.classList.contains('in-view' + props.position)) {
                             return;
                         }
                         entry.target.classList.add('in-view-' + props.position);
-                        if (descriptionRef.current) descriptionRef.current.classList.add('in-view-' + props.position)
+                        if (descriptionRef.current) {
+                            descriptionRef.current.classList.add('in-view-' + props.position)
+                        }
+                        if (icon.current) {
+                            icon.current.classList.add('in-view-' + iconPos);
+                        }
                     } else {
                         if (scrollPosition >= elementTop) {
                             return;
                         }
                         entry.target.classList.remove('in-view-' + props.position);
-                        if (descriptionRef.current) descriptionRef.current.classList.remove('in-view-' + props.position)
+                        if (descriptionRef.current) {
+                            descriptionRef.current.classList.remove('in-view-' + props.position)
+                        }
+                        if (icon.current) {
+                            icon.current.classList.remove('in-view-' + iconPos);
+                        }
                     }
                 }, 100);
 
@@ -101,29 +122,30 @@ function HomeSection(props: Props) {
              aspect-auto`}
                     style={props.background}>
                     {props.position === Position.RIGHT && props.extraComponent ?
-                        (<div className={`overflow-auto sm:mr-12 pt-14`} style={{padding: '16px'}}>
+                        (<div id={'icon'} ref={icon} className={`overflow-auto sm:ml-12 pt-14 fly-in-if-in-view p-16 h-min`}
+                             >
                             {props.extraComponent}
                         </div>) : null}
                     <div
                         id={'test-id'}
                         className={`flex flex-col ml-auto
-    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[70vw]' : ''}
-    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[70vw] ' : ''}
+    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[70vw] mt-16' : ''}
+    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[70vw] mt-16' : ''}
     ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''}
-    text-white ${props.extraContentClasses ? props.extraContentClasses : ''}} o-r`}>
+    text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
                         <div id={props.position} ref={titleRef}
-                             className={`flex flex-col w-[80%] fly-in-if-in-view`}>
+                             className={`flex flex-col w-[70%] fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
                             <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-400 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
+                               className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
                            ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
                         </div>
                     </div>
                     {props.position !== Position.RIGHT && props.extraComponent ?
-                        (<div className={
+                        (<div id={'icon'} ref={icon} className={
                             `overflow-auto
-                        sm:ml-12 justify-self-start place-self-start pt-14`}>
+                        sm:mr-12 justify-self-start place-self-start pt-14 fly-in-if-in-view p-16`}>
                             {props.extraComponent}
                         </div>) : null}
                 </div>
