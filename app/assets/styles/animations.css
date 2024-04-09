@@ -71,6 +71,12 @@
     transition: opacity 1s, transform 1s;
 }
 
+.fly-in-if-in-view-center {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 1s, transform 1s;
+}
+
 .fade-in-if-in-view {
     opacity: 0;
     transition: opacity 1.9s;
@@ -90,6 +96,15 @@
     animation: flyInFromRight 1s ease-out forwards;
 }
 
+.fly-in-if-in-view.in-view-center {
+    animation: flyInFromTop 1s ease-out forwards
+}
+
+.fade-in-if-in-view.in-view-center {
+    animation: fadeIn 1.9s ease-out forwards;
+
+}
+
 .fade-in {
     animation: fadeIn 2.9s ease-in forwards;
     opacity: 0;
@@ -101,4 +116,11 @@
 
 .nav-fade-out {
     animation: fadeOut .4s ease-in forwards;
+}
+
+.out-of-view {
+    opacity: 1;
+    transform: translateY(0%) translateY(0%);
+    transition: opacity 1s, transform 1s;
+    animation: fadeOut 1s ease-out forwards;
 }

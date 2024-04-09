@@ -7,9 +7,9 @@ import './assets/styles/animations.css';
 import HomeSection from "@/app/components/home/home-section";
 import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
-import {Position} from './components/home/home-section';// @ts-ignore
-import {ReactComponent as LightBulb} from './assets/svgs/light-bulb.svg';
-import {ReactComponent as Computer} from './assets/svgs/computer.svg';
+import {Position} from './components/home/home-section';
+import HomeSvg from "@/app/components/svg";
+// @ts-ignore
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -27,6 +27,7 @@ export default function Home() {
     const divRef = useRef<HTMLDivElement>(null);
     const [navbar, setNavbar] = useState(false);
     const [homeSectionHeight, setHomeSectionHeight] = useState('auto');
+    const background = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // Get the viewport height
@@ -34,6 +35,16 @@ export default function Home() {
 
         // Get the height of the other elements
         const otherElementsHeight = document.getElementById('other-elements')?.offsetHeight;
+
+        const handleScroll = () => {
+            if (background.current == null) {
+                return
+            }
+            const offset = window.pageYOffset;
+            background.current.style.backgroundPositionY = offset * 0.5 + 'px';
+        };
+
+        window.addEventListener('scroll', handleScroll);
 
         if (otherElementsHeight == null) {
             return;
@@ -43,6 +54,7 @@ export default function Home() {
             divRef.current.style.height = `${remainingHeight}px`;
             setLoaded(true)
         }
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     useEffect(() => {
         if (ready) {
@@ -94,9 +106,10 @@ export default function Home() {
             </div>
             {ready && (<>
                 <HomeSection
+                    level={1}
                     position={Position.LEFT}
                     title={'My Vision'}
-                    extraComponent={<LightBulb className={'sm:w-[160px] sm:h-[160px] md:w-min md:h-min w-[50px] h-[50px] mt-16'}/>}
+                    extraComponent={<HomeSvg svg={'/light-bulb.svg'}/>}
                     extraClasses={`h-[${homeSectionHeight}]`}
                     description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
                     background={{
@@ -104,15 +117,27 @@ export default function Home() {
                         backgroundRepeat: 'no-repeat',
                     }}/>
                 {/*Spacer('h-12', '#51518C')*/}
-                {Spacer('w-screen h-16', '#002')}
+                {/*Spacer('w-screen h-16', '#002')*/}
                 <HomeSection
+                    level={2}
                     position={Position.RIGHT}
-                    title={'My Skills'}
-                    extraComponent={<Computer className={'sm:w-[160px] sm:h-[160px] md:w-min md:h-min w-[50px] h-[50px] mt-16'}/>}
-                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'} background={{
-                    backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
-                    backgroundRepeat: 'no-repeat',
-                }}/>
+                    title={'My Experience'}
+                    extraComponent={<HomeSvg svg={'/computer.svg'}/>}
+                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
+                    background={{
+                        backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
+                        backgroundRepeat: 'no-repeat',
+                    }} />
+                <HomeSection
+                    level={3}
+                    position={Position.CENTER}
+                    title={"My Skills"}
+                    extraComponent={<HomeSvg top={'mt-0'} svg={'/skills.svg'}/>}
+                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
+                    background={{
+                        backgroundColor: '#5EDE37',
+                        backgroundRepeat: 'no-repeat',
+                    }}/>
                 {Spacer('h-56', '#002')}
             </>) || <>
                 <div ref={divRef} className={'h-[100vh] flex-grow bg-[#002] text-white'}/>

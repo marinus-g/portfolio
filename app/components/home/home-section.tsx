@@ -13,6 +13,7 @@ const interRegular = localFont({
 });
 
 interface Props {
+    level: number,
     position: Position,
     title: string,
     description: string,
@@ -42,6 +43,9 @@ function HomeSection(props: Props) {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 const elementTop = entry.target.getBoundingClientRect().top;
+                if (props.level == 3) {
+                    console.log("elementTop", elementTop)
+                }
                 const scrollPosition = window.pageYOffset;
                 titleTimeout = setTimeout(() => {
                     let iconPos = props.position;
@@ -59,23 +63,35 @@ function HomeSection(props: Props) {
                         if (entry.target.classList.contains('in-view' + props.position)) {
                             return;
                         }
+                        entry.target.classList.remove('out-of-view');
                         entry.target.classList.add('in-view-' + props.position);
                         if (descriptionRef.current) {
+                            descriptionRef.current.classList.remove('out-of-view')
                             descriptionRef.current.classList.add('in-view-' + props.position)
                         }
                         if (icon.current) {
+                            icon.current.classList.remove('out-of-view');
                             icon.current.classList.add('in-view-' + iconPos);
                         }
                     } else {
-                        if (scrollPosition >= elementTop) {
+                        if (props.level == 3) {
+                            console.log("scrollPosition", scrollPosition)
+                        }
+                        if (props.level == 3) {
+                            console.log("should remove")
+                        }
+                        if (scrollPosition >= elementTop && props.position != Position.CENTER) {
                             return;
                         }
                         entry.target.classList.remove('in-view-' + props.position);
+                        entry.target.classList.add('out-of-view')
                         if (descriptionRef.current) {
                             descriptionRef.current.classList.remove('in-view-' + props.position)
+                            descriptionRef.current.classList.add('out-of-view')
                         }
                         if (icon.current) {
                             icon.current.classList.remove('in-view-' + iconPos);
+                            icon.current.classList.add('out-of-view');
                         }
                     }
                 }, 100);
@@ -103,14 +119,23 @@ function HomeSection(props: Props) {
 
     return (
         <>
-            <div className={`flex flex-row w-max ${props.extraClasses ? props.extraClasses : ''}`}>
+            <div className={`flex flex-row w-max ${props.extraClasses ? props.extraClasses : ''}`}
+                 style={{
+                     zIndex: 1000 - props.level,
+                 }}>
                 <div
-                    className={`flex flex-row w-[100vw] pt-16 pb-12
+                    className={`flex ${props.position == Position.CENTER ? 'flex-col justify-center items-center' : 'flex-row'} w-[100vw] pt-16 pb-12
              aspect-auto`}
                     style={props.background}>
                     {props.position === Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
-                              className={`flex flex-col sm:ml-36 pt-14 fly-in-if-in-view p-16 h-auto w-auto`}
+                              className={`flex flex-col sm:ml-36 pt-14 p-16 h-auto w-auto fly-in-if-in-view`}
+                        >
+                            {props.extraComponent}
+                        </div>) : null}
+                    {props.position === Position.CENTER && props.extraComponent ?
+                        (<div id={'icon'} ref={icon}
+                              className={`flex flex-col sm:mb-10 pt-14 p-16 h-auto w-auto fly-in-if-in-view`}
                         >
                             {props.extraComponent}
                         </div>) : null}
@@ -119,21 +144,27 @@ function HomeSection(props: Props) {
                         className={`flex flex-col ml-auto
     ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[100vw] mt-16' : ''}
     ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[100vw] mt-16' : ''}
-    ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto' : ''}
+    ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto w-[100vw]' : ''}
     text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
                         <div id={props.position} ref={titleRef}
-                             className={`flex flex-col w-[70%] fly-in-if-in-view`}>
+                             className={`flex flex-col ${props.position != Position.CENTER ? 'w-[70%]' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
-                            <p ref={descriptionRef}
-                               className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
-                           ${props.position === Position.LEFT || props.position == Position.RIGHT ? 'text-left text-balance' : ''}`}>{props.description}</p>
+                            {props.position !== Position.CENTER ? (
+                                <p ref={descriptionRef}
+                                   className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
+       text-left text-balance`}>{props.description}</p>
+                            ) : (
+                                <p ref={descriptionRef}
+                                   className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6
+                                    fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased text-center text-balance`}>{props.description}</p>
+                            )}
                         </div>
                     </div>
-                    {props.position !== Position.RIGHT && props.extraComponent ?
+                    {props.position !== Position.RIGHT && props.position != Position.CENTER && props.extraComponent ?
                         (<div id={'icon'} ref={icon} className={
                             `flex flex-col h-auto w-auto
-                        sm:mr-36 justify-self-start place-self-start pt-14 fly-in-if-in-view p-16`}>
+                        sm:mr-36 justify-self-start place-self-start pt-14 p-16 fly-in-if-in-view`}>
                             {props.extraComponent}
                         </div>) : null}
                 </div>
