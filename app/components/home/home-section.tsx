@@ -89,13 +89,7 @@ function HomeSection(props: Props) {
                             icon.current.classList.add('in-view-' + iconPos);
                         }
                     } else {
-                        if (props.level == 3) {
-                            console.log("scrollPosition", scrollPosition)
-                        }
-                        if (props.level == 3) {
-                            console.log("should remove")
-                        }
-                        if (scrollPosition >= elementTop && props.position != Position.CENTER) {
+                        if (scrollPosition >= elementTop) {
                             return;
                         }
                         entry.target.classList.remove('in-view-' + props.position);
