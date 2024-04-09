@@ -145,17 +145,9 @@ export default function Home() {
                         //
                         // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#A8DCD9", endColorstr="#80BAB7", GradientType=1 );// #5EDE37 #B3A04D
                      //   backgroundColor: '#A8DCD9', // #5EDE37 #B3A04D
-
-                        background: 'hsla(177, 43%, 76%, 1)',
-
-                        background: 'linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
-
-                        background: '-moz-linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
-
-                        background: '-webkit-linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
-
-                        filter: 'progid: DXImageTransform.Microsoft.gradient( startColorstr="#A8DCD9", endColorstr="#9BD2CF", GradientType=1 )',
-                        backgroundRepeat: 'no-repeat',
+                        useClass: true,
+                        fileName: 'home-skills.css',
+                        className: 'skills-bg',
                     }}/>
                 {Spacer('h-56', '#002')}
             </>) || <>

@@ -41,6 +41,19 @@ function HomeSection(props: Props) {
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const icon = useRef<HTMLHeadingElement>(null)
     useEffect(() => {
+        function loadCSSFile(filename: string) {
+            const file = document.createElement("link");
+            file.setAttribute("rel", "stylesheet");
+            file.setAttribute("type", "text/css");
+            file.setAttribute("href", filename);
+            document.head.appendChild(file);
+            console.log("loaded css file")
+        }
+
+        if (props.background && ('useClass' in props.background) && 'fileName' in props.background) {
+            loadCSSFile("/styles/" + props.background.fileName);
+        }
+
         let titleTimeout: NodeJS.Timeout;
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -119,6 +132,11 @@ function HomeSection(props: Props) {
         };
     }, []);
 
+    let backgroundStyle = {};
+    if (!props.background || !('useClass' in props.background)) {
+        backgroundStyle = props.background;
+    }
+
     return (
         <>
             <div className={`flex flex-row w-max ${props.extraClasses ? props.extraClasses : ''}`}
@@ -127,8 +145,8 @@ function HomeSection(props: Props) {
                  }}>
                 <div
                     className={`flex ${props.position == Position.CENTER ? 'flex-col justify-center items-center' : 'flex-row'} w-[100vw] pt-16 pb-12
-             aspect-auto`}
-                    style={props.background}>
+             aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''}`}
+                    style={backgroundStyle}>
                     {props.position === Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
                               className={`flex flex-col sm:ml-36 pt-14 p-16 h-auto w-auto fly-in-if-in-view`}
