@@ -2,6 +2,8 @@
 import localFont from "next/font/local";
 import React, {useEffect, useRef} from "react";
 import '../../assets/styles/animations.css';
+import {Sen} from "next/dist/compiled/@next/font/dist/google";
+import {bool} from "prop-types";
 
 const openSans = localFont({
     src: './../../assets/fonts/OpenSans-Regular.ttf',
@@ -16,7 +18,7 @@ interface Props {
     level: number,
     position: Position,
     title: string,
-    description: string,
+    description: string | React.ReactNode,
     background: BackgroundProps,
     extraClasses?: string,
     extraContentClasses?: string,
@@ -150,15 +152,10 @@ function HomeSection(props: Props) {
                              className={`flex flex-col ${props.position != Position.CENTER ? 'w-[70%]' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
-                            {props.position !== Position.CENTER ? (
-                                <p ref={descriptionRef}
-                                   className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased
-       text-left text-balance`}>{props.description}</p>
-                            ) : (
-                                <p ref={descriptionRef}
-                                   className={`${interRegular.className} text-gray-300 leading[32.5px] mt-6
-                                    fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased text-center text-balance`}>{props.description}</p>
-                            )}
+                            <div ref={descriptionRef} className={`text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased 
+                            ${props.position == Position.CENTER} ? 'text-center text-balance' : 'text-left text-balance'`}>
+                                {<SectionBody element={props.description}></SectionBody>}
+                            </div>
                         </div>
                     </div>
                     {props.position !== Position.RIGHT && props.position != Position.CENTER && props.extraComponent ?
@@ -171,6 +168,18 @@ function HomeSection(props: Props) {
             </div>
         </>
     );
+}
+
+interface SectionBodyProps {
+    element: string | React.ReactNode
+}
+
+export function SectionBody({element}: SectionBodyProps) {
+    const isText = typeof element === 'string';
+    return (
+        <>
+            {!isText && element || <p>{element}</p>}
+        </>)
 }
 
 export default HomeSection;

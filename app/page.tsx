@@ -9,7 +9,7 @@ import Spacer from "@/app/components/home/spacer";
 import Navbar from "@/app/components/navbar";
 import {Position} from './components/home/home-section';
 import HomeSvg from "@/app/components/svg";
-// @ts-ignore
+import Skills from "@/app/components/home/skill-section";
 
 const poiretOne = localFont({
     src: './assets/fonts/PoiretOne-Regular.ttf',
@@ -133,9 +133,28 @@ export default function Home() {
                     position={Position.CENTER}
                     title={"My Skills"}
                     extraComponent={<HomeSvg top={'mt-0'} svg={'/skills.svg'}/>}
-                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
+                    description={(<Skills />)}
                     background={{
-                        backgroundColor: '#5EDE37',
+                      //  backgroundColor: '#2C2CF2', background: hsla(177, 43%, 76%, 1);
+                        //
+                        // background: linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
+                        //
+                        // background: -moz-linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
+                        //
+                        // background: -webkit-linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
+                        //
+                        // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#A8DCD9", endColorstr="#80BAB7", GradientType=1 );// #5EDE37 #B3A04D
+                     //   backgroundColor: '#A8DCD9', // #5EDE37 #B3A04D
+
+                        background: 'hsla(177, 43%, 76%, 1)',
+
+                        background: 'linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
+
+                        background: '-moz-linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
+
+                        background: '-webkit-linear-gradient(-90deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 38%, 72%, 1) 32%, hsla(177, 45%, 73%, 1) 70%, hsla(180, 40%, 94%, 1) 85%, hsla(0, 0%, 100%, 1) 100%)',
+
+                        filter: 'progid: DXImageTransform.Microsoft.gradient( startColorstr="#A8DCD9", endColorstr="#9BD2CF", GradientType=1 )',
                         backgroundRepeat: 'no-repeat',
                     }}/>
                 {Spacer('h-56', '#002')}
