@@ -50,36 +50,36 @@
 }
 
 .fly-in {
+    opacity: 0;
     animation: flyInFromTop 1s ease-out forwards;
 }
 
 .fly-in-if-in-view {
     opacity: 0;
-    transform: translateX(-100%);
+    /*transform: translateX(-100%); */
     transition: opacity 1s, transform 1s;
 }
 
 .fly-in-if-in-view-left {
     opacity: 0;
     transform: translateX(25%);
-    transition: opacity 1s, transform 1s;
+    transition: transform 1s;
 }
 
 .fly-in-if-in-view-right {
     opacity: 0;
     transform: translateX(-50%);
-    transition: opacity 1s, transform 1s;
+    transition: transform 1s;
 }
 
 .fly-in-if-in-view-center {
     opacity: 0;
     transform: translateY(-50%);
-    transition: opacity 1s, transform 1s;
+    transition: transform 1s;
 }
 
 .fade-in-if-in-view {
     opacity: 0;
-    transition: opacity 1.9s;
 }
 
 .fade-in-if-in-view.in-view-left {
@@ -110,6 +110,11 @@
     opacity: 0;
 }
 
+.fade-in-fast {
+    animation: fadeIn .5s ease-in forwards;
+    opacity: 0;
+}
+
 .nav-fade-in {
     animation: fadeIn .4s ease-in forwards;
 }
@@ -119,8 +124,8 @@
 }
 
 .out-of-view {
-    opacity: 1;
+    opacity: 0;
     transform: translateY(0%) translateY(0%);
-    transition: opacity 1s, transform 1s;
-    animation: fadeOut 1s ease-out forwards;
+    transition: transform 0.2s;
+    animation: fadeOut 0.7s ease-out forwards;
 }

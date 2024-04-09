@@ -1,6 +1,6 @@
 'use client'
 import localFont from "next/font/local";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../../assets/styles/animations.css';
 import {Sen} from "next/dist/compiled/@next/font/dist/google";
 import {bool} from "prop-types";
@@ -40,6 +40,8 @@ function HomeSection(props: Props) {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const icon = useRef<HTMLHeadingElement>(null)
+    const [initialLoad, setInitialLoad] = useState(true);
+
     useEffect(() => {
         function loadCSSFile(filename: string) {
             const file = document.createElement("link");
@@ -47,22 +49,23 @@ function HomeSection(props: Props) {
             file.setAttribute("type", "text/css");
             file.setAttribute("href", filename);
             document.head.appendChild(file);
-            console.log("loaded css file")
         }
 
         if (props.background && ('useClass' in props.background) && 'fileName' in props.background) {
             loadCSSFile("/styles/" + props.background.fileName);
         }
 
-        let titleTimeout: NodeJS.Timeout;
+        let titleTimeout: NodeJS.Timeout | null = null;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 const elementTop = entry.target.getBoundingClientRect().top;
-                if (props.level == 3) {
-                    console.log("elementTop", elementTop)
-                }
+
                 const scrollPosition = window.pageYOffset;
+                if (titleTimeout) {
+                    return;
+                }
                 titleTimeout = setTimeout(() => {
+                    titleTimeout = null;
                     let iconPos = props.position;
                     switch (iconPos) {
                         case Position.LEFT:
@@ -75,7 +78,7 @@ function HomeSection(props: Props) {
                             break;
                     }
                     if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('in-view' + props.position)) {
+                        if (entry.target.classList.contains('in-view-' + props.position)) {
                             return;
                         }
                         entry.target.classList.remove('out-of-view');
@@ -89,6 +92,10 @@ function HomeSection(props: Props) {
                             icon.current.classList.add('in-view-' + iconPos);
                         }
                     } else {
+                        if (initialLoad) {
+                            setInitialLoad(false);
+                            return;
+                        }
                         if (scrollPosition >= elementTop) {
                             return;
                         }
@@ -103,8 +110,7 @@ function HomeSection(props: Props) {
                             icon.current.classList.add('out-of-view');
                         }
                     }
-                }, 100);
-
+                }, initialLoad ? 1 : 100);
             },
             {
                 root: null,
@@ -118,13 +124,12 @@ function HomeSection(props: Props) {
         if (titleRef.current) {
             observer.observe(titleRef.current);
         }
-
         return () => {
             if (titleRef.current) {
                 observer.unobserve(titleRef.current);
             }
         };
-    }, []);
+    }, [initialLoad]);
 
     let backgroundStyle = {};
     if (!props.background || !('useClass' in props.background)) {
@@ -133,13 +138,13 @@ function HomeSection(props: Props) {
 
     return (
         <>
-            <div className={`flex flex-row w-max ${props.extraClasses ? props.extraClasses : ''}`}
+            <div className={`flex flex-row w-max relative`}
                  style={{
                      zIndex: 1000 - props.level,
                  }}>
                 <div
                     className={`flex ${props.position == Position.CENTER ? 'flex-col justify-center items-center' : 'flex-row'} w-[100vw] pt-16 pb-12
-             aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''}`}
+             aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''} ${props.extraClasses ? props.extraClasses : ''}`}
                     style={backgroundStyle}>
                     {props.position === Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
@@ -164,7 +169,7 @@ function HomeSection(props: Props) {
                              className={`flex flex-col ${props.position != Position.CENTER ? 'w-[70%]' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
-                            <div ref={descriptionRef} className={`text-gray-300 leading[32.5px] mt-6 fade-in-if-in-view text-[26px] w-full select-text subpixel-antialiased 
+                            <div ref={descriptionRef} className={`text-gray-300 leading[32.5px] mt-6 text-[26px] w-full select-text subpixel-antialiased fade-in-if-in-view
                             ${props.position == Position.CENTER} ? 'text-center text-balance' : 'text-left text-balance'`}>
                                 {<SectionBody element={props.description}></SectionBody>}
                             </div>

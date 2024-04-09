@@ -56,6 +56,7 @@ export default function Home() {
         }
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
     useEffect(() => {
         if (ready) {
             setNavbar(true);
@@ -66,21 +67,21 @@ export default function Home() {
     useEffect(() => {
         const aboveContentHeight = document.getElementById('other-elements')?.offsetHeight || 0;
         const viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-        const homeSectionHeight = viewportHeight - aboveContentHeight;
-        setHomeSectionHeight(`${homeSectionHeight}px`);
+        const homeSectionHeight = (viewportHeight - aboveContentHeight) + 40;
+        setHomeSectionHeight(`flex-grow`);
     }, []);
     return (
-        <main className={`flex flex-col relative select-none overflow-x-hidden ${loaded ? 'overflow-y-hidden' : ''}`}>
+        <main className={`flex flex-col relative select-none overflow-x-hidden bg-[#002]`}>
             {Navbar({
                 home: true,
                 showNavbar: navbar
             })}
             <div
                 id={'other-elements'}
-                className="flex flex-col
-                bg-cover bg-right-bottom bg-no-repeat
-                2xl:background-4-k
-                sm:h-[55vh] xl:h-[40vh] md:h-[50vh] lg:h-[50vh] h-[65vh] 2xl:h-[70vh] w-screen relative"
+                className={`flex flex-col bg-cover bg-right-bottom bg-no-repeat 2xl:background-4-k
+                 sm:h-[55vh] xl:h-[40vh] md:h-[50vh] lg:h-[50vh] h-[65vh] 2xl:h-[70vh]
+                 w-screen
+                  `}
                 style={{
                     backgroundRepeat: "no-repeat",
                     backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgMTAwMCAzMDAiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGRkZGRkYiPjwvcmVjdD48cGF0aCBkPSJNMCAxNzZMMjAuOCAxODMuMkM0MS43IDE5MC4zIDgzLjMgMjA0LjcgMTI1IDIxMkMxNjYuNyAyMTkuMyAyMDguMyAyMTkuNyAyNTAgMjE2LjVDMjkxLjcgMjEzLjMgMzMzLjMgMjA2LjcgMzc1IDIxNC41QzQxNi43IDIyMi4zIDQ1OC4zIDI0NC43IDUwMCAyNDkuOEM1NDEuNyAyNTUgNTgzLjMgMjQzIDYyNSAyMzEuNUM2NjYuNyAyMjAgNzA4LjMgMjA5IDc1MCAyMDUuMkM3OTEuNyAyMDEuMyA4MzMuMyAyMDQuNyA4NzUgMjAzLjNDOTE2LjcgMjAyIDk1OC4zIDE5NiA5NzkuMiAxOTNMMTAwMCAxOTBMMTAwMCAzMDFMOTc5LjIgMzAxQzk1OC4zIDMwMSA5MTYuNyAzMDEgODc1IDMwMUM4MzMuMyAzMDEgNzkxLjcgMzAxIDc1MCAzMDFDNzA4LjMgMzAxIDY2Ni43IDMwMSA2MjUgMzAxQzU4My4zIDMwMSA1NDEuNyAzMDEgNTAwIDMwMUM0NTguMyAzMDEgNDE2LjcgMzAxIDM3NSAzMDFDMzMzLjMgMzAxIDI5MS43IDMwMSAyNTAgMzAxQzIwOC4zIDMwMSAxNjYuNyAzMDEgMTI1IDMwMUM4My4zIDMwMSA0MS43IDMwMSAyMC44IDMwMUwwIDMwMVoiIGZpbGw9IiMwMDIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PC9wYXRoPjwvc3ZnPg==")'
@@ -105,51 +106,43 @@ export default function Home() {
                 </div>
             </div>
             {ready && (<>
-                <HomeSection
-                    level={1}
-                    position={Position.LEFT}
-                    title={'My Vision'}
-                    extraComponent={<HomeSvg svg={'/light-bulb.svg'}/>}
-                    extraClasses={`h-[${homeSectionHeight}]`}
-                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
-                    background={{
-                        backgroundColor: '#002',
-                        backgroundRepeat: 'no-repeat',
-                    }}/>
-                {/*Spacer('h-12', '#51518C')*/}
-                {/*Spacer('w-screen h-16', '#002')*/}
-                <HomeSection
-                    level={2}
-                    position={Position.RIGHT}
-                    title={'My Experience'}
-                    extraComponent={<HomeSvg svg={'/computer.svg'}/>}
-                    description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
-                    background={{
-                        backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
-                        backgroundRepeat: 'no-repeat',
-                    }} />
-                <HomeSection
-                    level={3}
-                    position={Position.CENTER}
-                    title={"My Skills"}
-                    extraComponent={<HomeSvg top={'mt-0'} svg={'/skills.svg'}/>}
-                    description={(<Skills />)}
-                    background={{
-                      //  backgroundColor: '#2C2CF2', background: hsla(177, 43%, 76%, 1);
-                        //
-                        // background: linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
-                        //
-                        // background: -moz-linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
-                        //
-                        // background: -webkit-linear-gradient(180deg, hsla(177, 43%, 76%, 1) 0%, hsla(177, 30%, 62%, 1) 32%, hsla(208, 9%, 73%, 1) 76%, hsla(0, 0%, 100%, 1) 100%);
-                        //
-                        // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#A8DCD9", endColorstr="#80BAB7", GradientType=1 );// #5EDE37 #B3A04D
-                     //   backgroundColor: '#A8DCD9', // #5EDE37 #B3A04D
-                        useClass: true,
-                        fileName: 'home-skills.css',
-                        className: 'skills-bg',
-                    }}/>
-                {Spacer('h-56', '#002')}
+                <div className={'fade-in-fast'}>
+                    <HomeSection
+                        level={1}
+                        position={Position.LEFT}
+                        title={'My Vision'}
+                        extraComponent={<HomeSvg svg={'/light-bulb.svg'}/>}
+                        extraClasses={`flex-grow`}
+                        description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
+                        background={{
+                            backgroundColor: '#002',
+                            backgroundRepeat: 'no-repeat',
+                        }}/>
+                    {/*Spacer('h-12', '#51518C')*/}
+                    {/*Spacer('w-screen h-16', '#002')*/}
+                    <HomeSection
+                        level={2}
+                        position={Position.RIGHT}
+                        title={'My Experience'}
+                        extraComponent={<HomeSvg svg={'/computer.svg'}/>}
+                        description={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'}
+                        background={{
+                            backgroundColor: '#51518C', // #B3A04D // #2C2CF2 // #51518C
+                            backgroundRepeat: 'no-repeat',
+                        }}/>
+                    <HomeSection
+                        level={3}
+                        position={Position.CENTER}
+                        title={"My Skills"}
+                        extraComponent={<HomeSvg top={'mt-0'} svg={'/skills.svg'}/>}
+                        description={(<Skills/>)}
+                        background={{
+                            useClass: true,
+                            fileName: 'home-skills.css',
+                            className: 'skills-bg',
+                        }}/>
+                    {Spacer('h-56', '#002')}
+                </div>
             </>) || <>
                 <div ref={divRef} className={'h-[100vh] flex-grow bg-[#002] text-white'}/>
             </>}
