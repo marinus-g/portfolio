@@ -84,17 +84,17 @@ export default function Home() {
                         <div className={'brightness-125'}>
                             <Image
                                 draggable={false}
-                                className={'fly-in rounded-full fade-into-background border-black ' +
-                                    'border-2 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] sm:h-[100px] sm:w-[100px] ' +
-                                    'h-[65px] w-[65px]'}
+                                className={`fly-in rounded-full fade-into-background border-black
+                                    border-2  2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
+                            sm:h-[70px] sm:w-[70px] h-[65px] w-[65px]`}
                                 src={'https://avatars.githubusercontent.com/u/148557369?v=4'} alt={'User Image'}
                                 placeholder="blur"
                                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                                 width={1920} height={1080}></Image>
                         </div>
                     </>) || <div
-                        className={'brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] ' +
-                            'sm:h-[100px] sm:w-[100px] h-[65px] w-[65x]'}></div>}
+                        className={`brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
+                            sm:h-[70px] sm:w-[70px] h-[65px] w-[65x]`}></div>}
                     {WelcomeComponent({
                         poiretOne,
                         nerdFont,
@@ -138,7 +138,7 @@ export default function Home() {
                             fileName: 'home-skills.css',
                             className: 'skills-bg',
                         }}/>
-                    {/*Spacer('h-56', '#002')*/}
+                    {Spacer('flex-grow', '#002')}
                 </div>
             </>) || <>
                 <div ref={divRef} className={'h-[100vh] flex-grow bg-[#002] text-white'}/>

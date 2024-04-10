@@ -178,7 +178,7 @@ function HomeSection(props: Props) {
                             <h2
                                 className={`${openSans.className} md:text-7xl text-3xl subpixel-antialiased`}>{props.title}</h2>
                             <div ref={descriptionRef} className={`text-gray-300 leading-2 sm:leading[32.5px] sd:mt-6 mt-2 sm:text-[26px] text-[12px] w-full select-text subpixel-antialiased fade-in-if-in-view
-                            ${position == Position.CENTER} ? 'text-center text-balance' : 'sm:text-left text-center text-balance'`}>
+                            ${position == Position.CENTER} ? 'text-center text-balance' : 'sm:text-center lg:text-center md:text-center xl:text-left 2xl:text-center text-balance'`}>
                                 {<SectionBody element={props.description}></SectionBody>}
                             </div>
                         </div>

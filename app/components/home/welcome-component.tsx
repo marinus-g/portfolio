@@ -47,7 +47,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
                     }, 500);
                     return;
                 }
-            }, 187);
+            }, 69);
         }
 
         incrementWelcomeText('Hi, I am Marinus!')
@@ -62,7 +62,7 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
         </h1>
         {showDescription && (<>
             <h3
-                className={`${welcomeProps.nerdFont.className} select-text font-light 2xl:text-4xl 2xl:mt-0 text-black mt-1 sm:mt-0 fly-in sm:text-5xl text-1xl leading-2`}>I am
+                className={`${welcomeProps.nerdFont.className} select-text font-light 2xl:text-4xl 2xl:mt-0 text-black mt-1 sm:mt-0 fly-in sm:text-3xl text-1xl leading-2`}>I am
                 a
                 Software Developer interested in developing software for the general public.
             </h3>
