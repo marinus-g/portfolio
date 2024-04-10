@@ -93,11 +93,13 @@ export default function Home() {
                                 width={1920} height={1080}></Image>
                         </div>
                     </>) || <div
-                        className={'brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] sm:h-[100px] sm:w-[100px] h-[70] w-[70px]'}></div>}{WelcomeComponent({
-                    poiretOne,
-                    nerdFont,
-                    setReady
-                })}
+                        className={'brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] ' +
+                            'sm:h-[100px] sm:w-[100px] h-[65px] w-[65x]'}></div>}
+                    {WelcomeComponent({
+                        poiretOne,
+                        nerdFont,
+                        setReady
+                    })}
                 </div>
             </div>
             {ready && (<>
