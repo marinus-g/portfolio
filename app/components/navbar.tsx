@@ -62,7 +62,7 @@ export default function Navbar(props: NavbarProps) {
                 </div>) : (
                     <div
                         ref={navbarRef}
-                        className={'fade-in flex flex-row col-span-full w-screen fixed top-0 bg-black text-white'}
+                        className={'fade-in flex flex-row col-span-full w-screen fixed top-0 bg-[#002] text-white'}
                         style={{
                             zIndex: 1000,
                         }}>
