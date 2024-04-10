@@ -41,6 +41,7 @@ function HomeSection(props: Props) {
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const icon = useRef<HTMLHeadingElement>(null)
     const [initialLoad, setInitialLoad] = useState(true);
+    const [position, setPosition] = useState<Position>(props.position);
 
     useEffect(() => {
         function loadCSSFile(filename: string) {
@@ -65,8 +66,12 @@ function HomeSection(props: Props) {
                     return;
                 }
                 titleTimeout = setTimeout(() => {
+                    let position = props.position;
+                    if (document.body.offsetWidth < 768) {
+                        position = Position.CENTER;
+                    }
                     titleTimeout = null;
-                    let iconPos = props.position;
+                    let iconPos = position;
                     switch (iconPos) {
                         case Position.LEFT:
                             iconPos = Position.RIGHT;
@@ -78,14 +83,14 @@ function HomeSection(props: Props) {
                             break;
                     }
                     if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('in-view-' + props.position)) {
+                        if (entry.target.classList.contains('in-view-' + position)) {
                             return;
                         }
                         entry.target.classList.remove('out-of-view');
-                        entry.target.classList.add('in-view-' + props.position);
+                        entry.target.classList.add('in-view-' + position);
                         if (descriptionRef.current) {
                             descriptionRef.current.classList.remove('out-of-view')
-                            descriptionRef.current.classList.add('in-view-' + props.position)
+                            descriptionRef.current.classList.add('in-view-' + position)
                         }
                         if (icon.current) {
                             icon.current.classList.remove('out-of-view');
@@ -99,10 +104,10 @@ function HomeSection(props: Props) {
                         if (scrollPosition >= elementTop) {
                             return;
                         }
-                        entry.target.classList.remove('in-view-' + props.position);
+                        entry.target.classList.remove('in-view-' + position);
                         entry.target.classList.add('out-of-view')
                         if (descriptionRef.current) {
-                            descriptionRef.current.classList.remove('in-view-' + props.position)
+                            descriptionRef.current.classList.remove('in-view-' + position)
                             descriptionRef.current.classList.add('out-of-view')
                         }
                         if (icon.current) {
@@ -143,42 +148,47 @@ function HomeSection(props: Props) {
                      zIndex: 1000 - props.level,
                  }}>
                 <div
-                    className={`flex ${props.position == Position.CENTER ? 'flex-col justify-center items-center' : 'flex-row'} w-[100vw] pt-16 pb-12
+                    className={`flex ${position == Position.CENTER ? 'flex-col justify-center items-center' : 
+                        'sm:flex-row sm:justify-normal sm:items-start' +
+                        ' flex-col justify-center items-center'}
+                         w-[100vw] md:pt-16 md:pb-12 pt-2 pb-1
              aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''} ${props.extraClasses ? props.extraClasses : ''}`}
                     style={backgroundStyle}>
-                    {props.position === Position.RIGHT && props.extraComponent ?
+                    {position === Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
-                              className={`flex flex-col sm:ml-36 pt-14 p-16 h-auto w-auto fly-in-if-in-view`}
+                              className={`flex flex-col sm:ml-36 md:pt-14 md:p-16 pt-5 md-5 h-auto w-auto fly-in-if-in-view order-2`}
                         >
                             {props.extraComponent}
                         </div>) : null}
-                    {props.position === Position.CENTER && props.extraComponent ?
+                    {position === Position.CENTER && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
-                              className={`flex flex-col sm:mb-10 pt-14 p-16 h-auto w-auto fly-in-if-in-view`}
+                              className={`flex flex-col sm:mb-10 mb-3 sm:pt-14 sm:p-16 pt-5 h-auto w-auto fly-in-if-in-view order-2`}
                         >
                             {props.extraComponent}
                         </div>) : null}
                     <div
                         id={'test-id'}
-                        className={`flex flex-col ml-auto
-    ${props.position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[100vw] mt-16' : ''}
-    ${props.position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[100vw] mt-16' : ''}
-    ${props.position === Position.CENTER ? 'sm:justify-self-center sm:items-center sm:mx-auto w-[100vw]' : ''}
+                        className={`flex flex-col ml-auto order-3
+    ${position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
+    ${position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
+    ${position === Position.CENTER ? 'justify-self-center items-center mx-auto w-[100vw] sm:mt-0 mt-3' : ''}
     text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
-                        <div id={props.position} ref={titleRef}
-                             className={`flex flex-col ${props.position != Position.CENTER ? 'w-[70%]' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
+                        <div id={position} ref={titleRef}
+                             className={`flex flex-col ${position != Position.CENTER ? 'w-[70%] sm:justify-start sm:items-start justify-center items-center' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
                             <h2
-                                className={`${openSans.className} text-7xl subpixel-antialiased`}>{props.title}</h2>
-                            <div ref={descriptionRef} className={`text-gray-300 leading[32.5px] mt-6 text-[26px] w-full select-text subpixel-antialiased fade-in-if-in-view
-                            ${props.position == Position.CENTER} ? 'text-center text-balance' : 'text-left text-balance'`}>
+                                className={`${openSans.className} md:text-7xl text-3xl subpixel-antialiased`}>{props.title}</h2>
+                            <div ref={descriptionRef} className={`text-gray-300 leading-2 sm:leading[32.5px] sd:mt-6 mt-2 sm:text-[26px] text-[12px] w-full select-text subpixel-antialiased fade-in-if-in-view
+                            ${position == Position.CENTER} ? 'text-center text-balance' : 'sm:text-left text-center text-balance'`}>
                                 {<SectionBody element={props.description}></SectionBody>}
                             </div>
                         </div>
                     </div>
-                    {props.position !== Position.RIGHT && props.position != Position.CENTER && props.extraComponent ?
+                    {position === Position.LEFT && props.extraComponent ?
                         (<div id={'icon'} ref={icon} className={
-                            `flex flex-col h-auto w-auto
-                        sm:mr-36 justify-self-start place-self-start pt-14 p-16 fly-in-if-in-view`}>
+                            `flex flex-col h-auto w-auto sm:self-auto self-center sm:order-9 order-1
+                            
+                        sm:mr-36 sm:justify-self-start sm:place-self-start place-self-center justify-self-center sm:pt-14 sm:p-16
+                          pt-2 p-2 fly-in-if-in-view`}>
                             {props.extraComponent}
                         </div>) : null}
                 </div>

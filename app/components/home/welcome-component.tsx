@@ -56,18 +56,18 @@ function WelcomeComponent(welcomeProps: WelcomeProps) {
 
     return <div className={'flex flex-col items-center justify-center text-center'}>
         <h1 //  bg-gradient-to-r from-red-600 via-yellow-500-800 to-white
-            className={`${spaceMonoBold.className} mt-2.5 select-text font-medium sm:text-9xl 2xl:text-7xl text-black inline-block 
-            md:text-3xl text-4xl`}>
+            className={`${inconsolataSemiExpanded.className} mt-1.5 2xl:mt-0 select-text sm:font-medium sm:text-9xl 2xl:text-7xl text-black inline-block 
+            md:text-3xl text-2xl`}>
             {welcomeText}{isTyping && <span className={'cursor text-black'}>|</span>}
         </h1>
         {showDescription && (<>
             <h3
-                className={`${welcomeProps.nerdFont.className} select-text font-light 2xl:text-4xl text-black mt-2.5 sm:mt-3.5 fly-in sm:text-5xl text-2xl leading-4`}>I am
+                className={`${welcomeProps.nerdFont.className} select-text font-light 2xl:text-4xl 2xl:mt-0 text-black mt-1 sm:mt-0 fly-in sm:text-5xl text-1xl leading-2`}>I am
                 a
                 Software Developer interested in developing software for the general public.
             </h3>
             {showQuote &&
-            <p className={'2xl:mt-0 xl:mt-1 lg:mt-0 sm:mt-2 mt-3 fly-in 2xl:text-2xl'}><span
+            <p className={'2xl:mt-0 xl:mt-1 lg:mt-0 sm:mt-2 mt-0 fly-in 2xl:text-2xl sm:text-xl text-xs'}><span
                 className={`${welcomeProps.poiretOne.className} text-black fly-in`}> &quot;Quality is more important than quantity. One home run is much better than two doubles.&quot; - Steve Jobs</span>
             </p>}
         </>)}
