@@ -84,7 +84,9 @@ export default function Home() {
                         <div className={'brightness-125'}>
                             <Image
                                 draggable={false}
-                                className={'fly-in rounded-full fade-into-background border-black border-2 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] sm:h-[100px] sm:w-[100px] h-[100px] w-[100px]'}
+                                className={'fly-in rounded-full fade-into-background border-black ' +
+                                    'border-2 2xl:h-[100px] 2xl:w-[100px] lg:h-[150px] lg:w-[150px] md:h-[125px] md:w-[125px] sm:h-[100px] sm:w-[100px] ' +
+                                    'h-[65px] w-[65px]'}
                                 src={'https://avatars.githubusercontent.com/u/148557369?v=4'} alt={'User Image'}
                                 placeholder="blur"
                                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
