@@ -143,7 +143,7 @@ function HomeSection(props: Props) {
 
     return (
         <>
-            <div className={`flex flex-row w-max relative`}
+            <div className={`flex flex-row w-[100%] relative`}
                  style={{
                      zIndex: 1000 - props.level,
                  }}>
@@ -151,7 +151,7 @@ function HomeSection(props: Props) {
                     className={`flex ${position == Position.CENTER ? 'flex-col justify-center items-center' : 
                         'xl:flex-row xl:justify-normal xl:items-start' +
                         ' flex-col justify-center items-center'}
-                         w-[100vw] md:pt-16 md:pb-12 pt-2 pb-1
+                         w-[100%] max-w-[100%] md:pt-16 md:pb-12 pt-2 pb-1
              aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''} ${props.extraClasses ? props.extraClasses : ''}`}
                     style={backgroundStyle}>
                     {position === Position.RIGHT && props.extraComponent ?
@@ -169,9 +169,9 @@ function HomeSection(props: Props) {
                     <div
                         id={'test-id'}
                         className={`flex flex-col ml-auto order-3
-    ${position === Position.LEFT ? 'xl:justify-self-start xl:items-start xl:ml-16 w-[100vw] justify-self-center items-center' : ''}
-    ${position === Position.RIGHT ? 'xl:justify-self-end xl:items-end xl:justify-end xl:mr-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
-    ${position === Position.CENTER ? 'justify-self-center items-center mx-auto w-[100vw] md:mt-2 mt-0' : ''}
+    ${position === Position.LEFT ? 'xl:justify-self-start xl:items-start xl:ml-16 max-w-[100%] w-[100%] justify-self-center items-center' : ''}
+    ${position === Position.RIGHT ? 'xl:justify-self-end xl:items-end xl:justify-end xl:mr-16 max-w-[100%] w-[100%] md:mt-16 justify-self-center items-center' : ''}
+    ${position === Position.CENTER ? 'justify-self-center items-center mx-auto max-w-[100%] w-[100%] md:mt-2 mt-0' : ''}
     text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
                         <div id={position} ref={titleRef}
                              className={`flex flex-col ${position != Position.CENTER ? 'w-[70%] xl:justify-start xl:items-start justify-center items-center' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>

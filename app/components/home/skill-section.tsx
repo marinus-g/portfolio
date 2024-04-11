@@ -74,7 +74,7 @@ function Skills() {
                            src="https://github.com/marwin1991/profile-technology-icons/assets/76662862/2481dc48-be6b-4ebb-9e8c-3b957efe69fa"
                            alt="Linux" title="Linux"/>
                 </div>
-                <p className={'mt-5'}>My tech stack centers around Java and TypeScript. I use macOS, Windows, and Linux on a daily basis, keeping my coding versatile and up to speed with any challenge that comes my way.</p>
+                <p className={'mt-5'}>My tech stack centers around Java and TypeScript, enabling a robust foundation for building versatile and efficient applications.</p>
             </div>
         </>
     );
