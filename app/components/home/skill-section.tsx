@@ -3,7 +3,7 @@ import Image from "next/image";
 function Skills() {
     return (
         <div className={'flex flex-col self-center items-center justify-center sm:mt-8 mt-2'}>
-            <div className={'grid sm:grid-cols-11 grid-cols-7 gap-4 sm:gap-12 grid-rows-3 items-center justify-center select-none grid-flow-row'}>
+            <div className={'grid lg:grid-cols-8 sm:grid-cols-11 grid-cols-7 gap-4 sm:gap-12 grid-rows-3 items-center justify-center select-none grid-flow-row'}>
                 <Image width={50} height={50} draggable={false}
                        src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png"
                        alt="Java" title="Java"/>

@@ -149,45 +149,45 @@ function HomeSection(props: Props) {
                  }}>
                 <div
                     className={`flex ${position == Position.CENTER ? 'flex-col justify-center items-center' : 
-                        'sm:flex-row sm:justify-normal sm:items-start' +
+                        'xl:flex-row xl:justify-normal xl:items-start' +
                         ' flex-col justify-center items-center'}
                          w-[100vw] md:pt-16 md:pb-12 pt-2 pb-1
              aspect-auto ${(props.background && "className" in props.background) ? props.background.className : ''} ${props.extraClasses ? props.extraClasses : ''}`}
                     style={backgroundStyle}>
                     {position === Position.RIGHT && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
-                              className={`flex flex-col sm:ml-36 md:pt-14 md:p-16 pt-5 md-5 h-auto w-auto fly-in-if-in-view order-2`}
+                              className={`flex flex-col xl:ml-36 md:pt-14 md:p-16 pt-5 md-5 h-auto w-auto fly-in-if-in-view order-2`}
                         >
                             {props.extraComponent}
                         </div>) : null}
                     {position === Position.CENTER && props.extraComponent ?
                         (<div id={'icon'} ref={icon}
-                              className={`flex flex-col sm:mb-10 mb-3 sm:pt-14 sm:p-16 pt-5 h-auto w-auto fly-in-if-in-view order-2`}
+                              className={`flex flex-col xl:mb-10 mb-3 xl:pt-14 xl:p-16 pt-5 h-auto w-auto fly-in-if-in-view order-2`}
                         >
                             {props.extraComponent}
                         </div>) : null}
                     <div
                         id={'test-id'}
                         className={`flex flex-col ml-auto order-3
-    ${position === Position.LEFT ? 'sm:justify-self-start sm:items-start sm:ml-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
-    ${position === Position.RIGHT ? 'sm:justify-self-end sm:items-end sm:justify-end sm:mr-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
-    ${position === Position.CENTER ? 'justify-self-center items-center mx-auto w-[100vw] sm:mt-0 mt-3' : ''}
+    ${position === Position.LEFT ? 'xl:justify-self-start xl:items-start xl:ml-16 w-[100vw] justify-self-center items-center' : ''}
+    ${position === Position.RIGHT ? 'xl:justify-self-end xl:items-end xl:justify-end xl:mr-16 w-[100vw] md:mt-16 justify-self-center items-center' : ''}
+    ${position === Position.CENTER ? 'justify-self-center items-center mx-auto w-[100vw] md:mt-2 mt-0' : ''}
     text-white mb-24 ${props.extraContentClasses ? props.extraContentClasses : ''}}`}>
                         <div id={position} ref={titleRef}
-                             className={`flex flex-col ${position != Position.CENTER ? 'w-[70%] sm:justify-start sm:items-start justify-center items-center' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
+                             className={`flex flex-col ${position != Position.CENTER ? 'w-[70%] xl:justify-start xl:items-start justify-center items-center' : ' justify-center items-center w-[76%]'} fly-in-if-in-view`}>
                             <h2
                                 className={`${openSans.className} md:text-7xl text-3xl subpixel-antialiased`}>{props.title}</h2>
-                            <div ref={descriptionRef} className={`text-gray-300 leading-2 sm:leading[32.5px] sd:mt-6 mt-2 sm:text-[26px] text-[12px] w-full select-text subpixel-antialiased fade-in-if-in-view
-                            ${position == Position.CENTER} ? 'text-center text-balance' : 'sm:text-center lg:text-center md:text-center xl:text-left 2xl:text-center text-balance'`}>
+                            <div ref={descriptionRef} className={`text-gray-300 leading-2 xl:leading-[32.5px] sd:mt-6 mt-2 xl:text-[26px] sm:text[38px] lg:text-[18px] text-[12px] w-full select-text subpixel-antialiased fade-in-if-in-view
+                            ${position == Position.CENTER ? 'text-center text-balance' : 'sm:text-center lg:text-center md:text-center xl:text-left 2xl:text-left text-balance'}`}>
                                 {<SectionBody element={props.description}></SectionBody>}
                             </div>
                         </div>
                     </div>
                     {position === Position.LEFT && props.extraComponent ?
                         (<div id={'icon'} ref={icon} className={
-                            `flex flex-col h-auto w-auto sm:self-auto self-center sm:order-9 order-1
+                            `flex flex-col h-auto w-auto xl:self-auto self-center xl:order-9 order-1
                             
-                        sm:mr-36 sm:justify-self-start sm:place-self-start place-self-center justify-self-center sm:pt-14 sm:p-16
+                        xl:mr-36 xl:justify-self-start xl:place-self-start place-self-center justify-self-center xl:pt-14 xl:p-16
                           pt-2 p-2 fly-in-if-in-view`}>
                             {props.extraComponent}
                         </div>) : null}
