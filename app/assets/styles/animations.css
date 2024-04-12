@@ -115,6 +115,11 @@
     opacity: 0;
 }
 
+.fade-in-middle {
+    animation: fadeIn 1.7s ease-in forwards;
+    opacity: 0;
+}
+
 .nav-fade-in {
     animation: fadeIn .4s ease-in forwards;
 }

@@ -1,85 +1,69 @@
 'use client'
 
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import '../assets/styles/animations.css';
+import {useEffect, useState} from "react";
+import './../assets/styles/animations.css';
 
+export enum Location {
+    HOME = 'Home',
+    PROJECTS = 'Projects',
+}
 
-interface NavbarProps {
-    home: boolean,
+interface Props {
+    location: Location,
     showNavbar: boolean
 }
 
-export default function Navbar(props: NavbarProps) {
+export default function Navbar({location, showNavbar}: Props) {
     const [showScrollTop, setShowScrollTop] = useState(false);
-    const navbarRef = useRef<HTMLDivElement>(null);
-    const lastScrollTop = useRef(0); // Use useRef to store the value of lastScrollTop
-    const checkScrollTop = useCallback(() => {
 
-        console.log('checkScrollTop')
-        if (typeof window === 'undefined') {
-            return;
-        }
+    let lastScrollTop = 0;
+    const checkScrollTop = () => {
         const currentScrollTop = window.pageYOffset;
 
-        console.log(currentScrollTop, lastScrollTop.current, showScrollTop)
-        if (currentScrollTop > lastScrollTop.current && currentScrollTop > 400) {
+        if (currentScrollTop > lastScrollTop && currentScrollTop > 400) {
             setShowScrollTop(true);
         } else {
             setShowScrollTop(false);
         }
-        lastScrollTop.current = currentScrollTop;
-    }, []
-)
+
+        lastScrollTop = currentScrollTop;
+    };
 
     useEffect(() => {
-        if (!props.showNavbar) {
-            return;
-        }
-        const handleScroll = () => {
-            console.log('scroll event triggered');
-            checkScrollTop();
-        };
-        window.addEventListener('scroll', handleScroll);
-        console.log('added event listener')
+        window.addEventListener('scroll', checkScrollTop);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            console.log('removed event listener')
-        };
-    }, [props.showNavbar]);
-
-    useEffect(() => {
-        if (navbarRef.current) {
-            if (showScrollTop) {
-                navbarRef.current.classList.remove('nav-fade-out');
-                navbarRef.current.classList.add('nav-fade-in-fast');
-            } else {
-                navbarRef.current.classList.remove('nav-fade-in-fast');
-                navbarRef.current.classList.add('nav-fade-out');
-            }
+            window.removeEventListener('scroll', checkScrollTop);
         }
-    }, [showScrollTop]);
+    }, []);
     return (
         <>
-            {props.showNavbar ? (
-                showScrollTop ? (<div className={'top-4 right-4 cursor-pointer fade-in-fast w-[100%] fixed'}
+            {showNavbar ? (
+                showScrollTop ? (<div className={'fixed top-4 right-4 cursor-pointer fade-in-fast'}
+                                      style={{
+                                          zIndex: 9999,
+                                      }}
                                       onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
                     <span className={'text-4xl text-white group-hover:text-5xl'}>↑</span>
-                </div>) : (
-                    <div
-                        ref={navbarRef}
-                        className={'fade-in-fast flex flex-row col-span-full w-[100%] max-w-[100%] fixed top-0 bg-[#002] text-gray-400'}
-                        style={{
-                            zIndex: 9999,
-                        }}>
-                        <nav>
-                            <ul className={'flex flex-row justify-end'}>
-                                <li className={'mr-2 hover:text-white cursor-pointer'}>About</li>
-                                <li className={'mr-2 hover:text-white cursor-pointer'}>Projects</li>
-                                <li className={'mr-2 hover:text-white cursor-pointer'}>Contact</li>
+                </div>) : (<div className={'flex flex-row w-[100%] fixed top-0 bg-[#002]' +
+                        ' fade-in-fast justify-center items-center align-middle place-items-center'}
+                                style={{
+                                    zIndex: 9999,
+                                }}>
+                        <nav className={'content-center'}>
+                            <ul className={'flex flex-row gap-3'}>
+                                {Object.values(Location).map(value => {
+                                    return (
+                                        <li key={value}>
+                                            <a className={`${location == value ? 'text-white'
+                                                : 'text-gray-400 hover:text-gray-200 cursor-pointer'}`}>{value}</a>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                         </nav>
                     </div>
-                )) : null}
+                )
+            ) : null}
         </>
     );
 }

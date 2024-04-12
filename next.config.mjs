@@ -14,7 +14,16 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'github.com',
                // pathname: '/marwin1991/profile-technology-icons/'
-            }],
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'media.discordapp.net'
+            }
+            ],
     },
 };
 export default nextConfig;

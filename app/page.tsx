@@ -4,10 +4,8 @@ import localFont from "next/font/local";
 import WelcomeComponent from "@/app/components/home/welcome-component";
 import {useEffect, useRef, useState} from "react";
 import './assets/styles/animations.css';
-import HomeSection from "@/app/components/home/home-section";
-import Spacer from "@/app/components/home/spacer";
-import Navbar from "@/app/components/navbar";
-import {Position} from './components/home/home-section';
+import HomeSection, {Position} from "@/app/components/home/home-section";
+import Navbar, {Location} from "@/app/components/navbar";
 import HomeSvg from "@/app/components/svg";
 import Skills from "@/app/components/home/skill-section";
 
@@ -67,7 +65,7 @@ export default function Home() {
         <>
             <main className={`flex flex-col select-none bg-[#002] m-0 p-0`}>
                 {Navbar({
-                    home: true,
+                    location: Location.HOME,
                     showNavbar: navbar
                 })}
                 <div
@@ -85,7 +83,7 @@ export default function Home() {
                             <div className={'brightness-125'}>
                                 <Image
                                     draggable={false}
-                                    className={`fly-in rounded-full fade-into-background border-black
+                                    className={`fade-in-middle rounded-full fade-into-background border-black
                                     border-2  2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
                             sm:h-[70px] sm:w-[70px] h-[65px] w-[65px]`}
                                     src={'https://avatars.githubusercontent.com/u/148557369?v=4'} alt={'User Image'}
@@ -136,9 +134,37 @@ export default function Home() {
                             description={(<Skills/>)}
                             background={{
                                 useClass: true,
-                                fileName: 'home-skills.css',
+                                fileName: 'home.css',
                                 className: 'skills-bg',
                             }}/>
+
+                        <HomeSection level={4} position={Position.CENTER} title={"Projects"} description={
+                            <div className={'text-white'}>DAS IST EIN TEXT</div>
+                        } background={{
+                            useClass: true,
+                            fileName: 'home.css',
+                            className: 'projects-bg',
+                        }
+                        }/>
+                        <div className={'flex flex-row w-[100%] h-[59vh] relative'}>
+                            <div className={'w-[50%] relative'}>
+                                <Image
+                                    layout={'fill'}
+                                    objectFit={'cover'}
+                                    src={'https://media.discordapp.net/attachments/672542743431479306/1228317392615247983/safar-safarov-koOdUvfGr4c-unsplash.jpg?ex=662b9ab7&is=661925b7&hm=daed894c270fab24ac898d647a0ee0c283395d1612a5f96e77d06d88620fc362&=&format=webp'}
+                                    alt={'Test'}>
+                                </Image>
+                                <div className="absolute inset-0 backdrop-blur-sm"></div>
+                                <div
+                                    className={'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-50 '}>
+                                    <h1 className="text-gray-100 hover:text-white text-4xl text-center mb-3 text-gradient">References</h1>
+                                    <div className={'flex flex-col mt-2 text-left w-[70%]'}>
+                                        <h2 className={'text-3xl'}><a target={'_blank'} href={'https://Sparmahl.de'}>Sparmahl</a></h2>
+                                        <p className={' text-gray-50 mt-1.5 leading-4'}>Marinus helped us implementing our Newsletter</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </>) || <>
                     <div ref={divRef} className={'h-[100%] flex-grow bg-red text-white'}/>

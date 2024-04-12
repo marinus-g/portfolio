@@ -36,6 +36,11 @@
     background-size: cover;
     max-height: 49.2vh;
   }
+  .text-gradient {
+    background: linear-gradient(to right, rgb(237, 245, 2) 0%, #8635e3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 }
 
 @font-face {
