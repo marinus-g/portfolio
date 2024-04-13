@@ -37,7 +37,7 @@
     max-height: 49.2vh;
   }
   .text-gradient {
-    background: linear-gradient(to right, rgb(237, 245, 2) 0%, #8635e3 100%);
+    background: linear-gradient(33deg, rgb(255, 0, 0) 0%, #ff8800 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

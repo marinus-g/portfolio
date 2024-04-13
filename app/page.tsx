@@ -25,6 +25,7 @@ export default function Home() {
     const divRef = useRef<HTMLDivElement>(null);
     const [navbar, setNavbar] = useState(false);
     const background = useRef<HTMLDivElement>(null);
+    const [hoveringContactForm, setHoveringContactForm] = useState(false);
 
     useEffect(() => {
         // Get the viewport height
@@ -78,18 +79,22 @@ export default function Home() {
                         backgroundRepeat: "no-repeat",
                         backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgMTAwMCAzMDAiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGRkZGRkYiPjwvcmVjdD48cGF0aCBkPSJNMCAxNzZMMjAuOCAxODMuMkM0MS43IDE5MC4zIDgzLjMgMjA0LjcgMTI1IDIxMkMxNjYuNyAyMTkuMyAyMDguMyAyMTkuNyAyNTAgMjE2LjVDMjkxLjcgMjEzLjMgMzMzLjMgMjA2LjcgMzc1IDIxNC41QzQxNi43IDIyMi4zIDQ1OC4zIDI0NC43IDUwMCAyNDkuOEM1NDEuNyAyNTUgNTgzLjMgMjQzIDYyNSAyMzEuNUM2NjYuNyAyMjAgNzA4LjMgMjA5IDc1MCAyMDUuMkM3OTEuNyAyMDEuMyA4MzMuMyAyMDQuNyA4NzUgMjAzLjNDOTE2LjcgMjAyIDk1OC4zIDE5NiA5NzkuMiAxOTNMMTAwMCAxOTBMMTAwMCAzMDFMOTc5LjIgMzAxQzk1OC4zIDMwMSA5MTYuNyAzMDEgODc1IDMwMUM4MzMuMyAzMDEgNzkxLjcgMzAxIDc1MCAzMDFDNzA4LjMgMzAxIDY2Ni43IDMwMSA2MjUgMzAxQzU4My4zIDMwMSA1NDEuNyAzMDEgNTAwIDMwMUM0NTguMyAzMDEgNDE2LjcgMzAxIDM3NSAzMDFDMzMzLjMgMzAxIDI5MS43IDMwMSAyNTAgMzAxQzIwOC4zIDMwMSAxNjYuNyAzMDEgMTI1IDMwMUM4My4zIDMwMSA0MS43IDMwMSAyMC44IDMwMUwwIDMwMVoiIGZpbGw9IiMwMDIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PC9wYXRoPjwvc3ZnPg==")'
                     }}>
-                    <div className={'flex flex-col self-center items-center justify-center sm:mt-8 mt-7'}>
+                    <div className={`flex flex-col self-center items-center justify-center sm:mt-8 mt-7`}>
                         {ready && (<>
-                            <div className={'brightness-125'}>
+                            <div className={`relative brightness-125 rounded-full
+                            2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
+                            sm:h-[70px] sm:w-[70px] h-[65px] w-[65px] bg-white`}>
+                                <a href={'https://github.com/marinus-g'} target={'_blank'}>
                                 <Image
                                     draggable={false}
-                                    className={`fade-in-middle rounded-full fade-into-background border-black
-                                    border-2  2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
-                            sm:h-[70px] sm:w-[70px] h-[65px] w-[65px]`}
+                                    className={`relative fade-in-middle rounded-full fade-into-background border-black
+                                    border-2 2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
+                            sm:h-[70px] sm:w-[70px] h-[65px] w-[65px] hover:scale-110 transition-transform duration-200 cursor-pointer`}
                                     src={'https://avatars.githubusercontent.com/u/148557369?v=4'} alt={'User Image'}
                                     placeholder="blur"
                                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                                     width={1920} height={1080}></Image>
+                                </a>
                             </div>
                         </>) || <div
                             className={`brightness-125 2xl:h-[100px] 2xl:w-[100px] lg:h-[100px] lg:w-[100px] md:h-[85px] md:w-[85px]
@@ -146,23 +151,65 @@ export default function Home() {
                             className: 'projects-bg',
                         }
                         }/>
-                        <div className={'flex flex-row w-[100%] h-[59vh] relative'}>
-                            <div className={'w-[50%] relative'}>
-                                <Image
-                                    layout={'fill'}
-                                    objectFit={'cover'}
-                                    src={'https://media.discordapp.net/attachments/672542743431479306/1228317392615247983/safar-safarov-koOdUvfGr4c-unsplash.jpg?ex=662b9ab7&is=661925b7&hm=daed894c270fab24ac898d647a0ee0c283395d1612a5f96e77d06d88620fc362&=&format=webp'}
-                                    alt={'Test'}>
-                                </Image>
+                        <div className={'flex flex-row w-[100%] h-[59vh] relative overflow-hidden'}>
+                            <div className={'w-[100%] relative'}>
+                                <div className={`w-max h-max `}>
+                                    <Image
+                                        layout={'fill'}
+                                        objectFit={'cover'}
+                                        src={'https://media.discordapp.net/attachments/672542743431479306/1228317392615247983/safar-safarov-koOdUvfGr4c-unsplash.jpg?ex=662b9ab7&is=661925b7&hm=daed894c270fab24ac898d647a0ee0c283395d1612a5f96e77d06d88620fc362&=&format=webp'}
+                                        alt={'Test'}
+                                    className={`${hoveringContactForm ? 'scale-110' : ''} overflow-hidden transition-transform duration-500`}>
+                                    </Image>
+                                </div>
                                 <div className="absolute inset-0 backdrop-blur-sm"></div>
                                 <div
-                                    className={'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-50 '}>
-                                    <h1 className="text-gray-100 hover:text-white text-4xl text-center mb-3 text-gradient">References</h1>
-                                    <div className={'flex flex-col mt-2 text-left w-[70%]'}>
-                                        <h2 className={'text-3xl'}><a target={'_blank'} href={'https://Sparmahl.de'}>Sparmahl</a></h2>
-                                        <p className={' text-gray-50 mt-1.5 leading-4'}>Marinus helped us implementing our Newsletter</p>
+                                    className={'absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-50 '}>
+                                    <h1 className="text-gray-100 hover:text-white text-4xl text-center mb-3 text-gradient">
+                                        Need anything? Contact me!
+                                    </h1>
+                                </div>
+                                <div className={'absolute w-[100%] h-[100%] flex flex-row justify-center'}
+                                     >
+                                    <div
+                                        className={'relative top-1/3 transform w-[80%] h-[40%] bg-gray-700 bg-opacity-55 backdrop-blur-sm rounded-xl shadow shadow-black justify-center items-center p-3'}
+                                    >
+                                        <div
+                                            onMouseEnter={event => setHoveringContactForm(true)}
+                                            onMouseLeave={event => setHoveringContactForm(false)}
+                                            className={'p-3 flex flex-col items-center h-[100%] text-white'}>
+                                            <h1 className={'text-4xl text-fuchsia-50 text-center'}>Contact</h1>
+                                            <div className={'flex flex-row justify-center items-center'}>
+                                                <div className={'flex flex-col justify-center items-center'}>
+                                                    <h2 className={'text-white text-2xl'}>Email</h2>
+                                                    <p className={'text-gray-300 text-lg'}></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className={`absolute bottom-0 w-[100%] h-max left-0 bg-[#FFFFF] bg-opacity-40
+                                 backdrop-blur-lg
+                                 backdrop-opacity-85
+                                 flex flex-row text-gray-500 gap-5 items-center justify-center`}>
+                                    <div>
+                                        <p>© 2023-2024 marinus.dev</p>
+                                    </div>
+                                    <div>
+                                        <p><a className={`hover:text-white`} href={'/privacy'}>Privacy Policy</a></p>
+                                        <p><a className={`hover:text-white`} href={'/tos'}>Terms of Use</a></p>
+                                    </div>
+                                    <div>
+                                        <p><a href={'https://github.com/marinus-g'} target={'_blank'}
+                                              className={'hover:brightness-150'}>
+                                            <Image width={22} height={22} draggable={false}
+                                                   src={'https://assets.stickpng.com/images/5847f98fcef1014c0b5e48c0.png'}
+                                                   alt={'Github'} title={'Github'}/>
+                                        </a></p>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

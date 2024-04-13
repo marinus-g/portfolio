@@ -22,6 +22,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'media.discordapp.net'
+            },
+            {
+                protocol: 'https',
+                hostname: 'assets.stickpng.com'
             }
             ],
     },
