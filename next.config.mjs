@@ -26,6 +26,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'assets.stickpng.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.imgur.com'
             }
             ],
     },

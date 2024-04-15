@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useState} from "react";
-import './../assets/styles/animations.css';
+import '../assets/styles/animations.css';
 
 export enum Location {
     HOME = 'Home',
