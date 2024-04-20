@@ -33,19 +33,19 @@ function ContactForm({name}: Props) {
                     </Image>
                 </div>
                 <div
-                    className={'absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-50 '}>
+                    className={'absolute top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-50 '}>
 
                 </div>
                 <div className={'absolute w-[100%] h-[100%] flex flex-row justify-center'}
                 >
                     <div
-                        className={'relative top-1/4 transform w-max h-max bg-gray-700 bg-opacity-55 backdrop-blur-sm rounded-xl shadow shadow-black justify-center items-center p-8'}
+                        className={'relative top-20 transform w-max h-max bg-gray-700 bg-opacity-55 backdrop-blur-sm rounded-xl shadow shadow-black justify-center items-center p-8'}
                     >
                         <div
                             onMouseEnter={event => setHoveringContactForm(true)}
                             onMouseLeave={event => setHoveringContactForm(false)}
                             className={'p-1 flex flex-col items-center h-[100%] text-white mr-20 ml-20'}>
-                            <h1 className={`text-gray-100 hover:text-white text-4xl text-center text-gradient`}>
+                            <h1 className={`text-gray-100 hover:text-white text-4xl text-center text-gradient text-inter inter`}>
                                 Need anything? Contact me!
                             </h1>
                             <form className={'flex flex-col justify-center items-center'}>
