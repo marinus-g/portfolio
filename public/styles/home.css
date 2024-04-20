@@ -1,0 +1,24 @@
+.skills-bg {
+    background: hsla(217, 100%, 50%, 1);
+
+    background: linear-gradient(-90deg, hsla(217, 100%, 50%, 1) 0%, hsl(255, 96%, 73%) 100%);
+
+    background: -moz-linear-gradient(-90deg, hsla(217, 100%, 50%, 1) 0%, hsl(255, 96%, 73%) 100%);
+
+    background: -webkit-linear-gradient(-90deg, hsla(217, 100%, 50%, 1) 0%, hsl(255, 96%, 73%) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1 );
+}
+
+.projects-bg {
+    background: hsla(240, 27%, 43%, 1);
+
+    background: linear-gradient(90deg, hsla(240, 27%, 43%, 1) 0%, hsla(240, 100%, 7%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(240, 27%, 43%, 1) 0%, hsla(240, 100%, 7%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(240, 27%, 43%, 1) 0%, hsla(240, 100%, 7%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#51518C", endColorstr="#000022", GradientType=1 );
+}
+/*9978FCFF*/

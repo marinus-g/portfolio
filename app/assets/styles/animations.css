@@ -1,0 +1,136 @@
+@keyframes flyInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flyInFromRight {
+    0% {
+        transform: translateX(-25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flyInFromLeft {
+    0% {
+        transform: translateX(25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fly-in {
+    opacity: 0;
+    animation: flyInFromTop 1s ease-out forwards;
+}
+
+.fly-in-if-in-view {
+    opacity: 0;
+    /*transform: translateX(-100%); */
+    transition: opacity 1s, transform 1s;
+}
+
+.fly-in-if-in-view-left {
+    opacity: 0;
+    transform: translateX(25%);
+    transition: transform 1s;
+}
+
+.fly-in-if-in-view-right {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: transform 1s;
+}
+
+.fly-in-if-in-view-center {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: transform 1s;
+}
+
+.fade-in-if-in-view {
+    opacity: 0;
+}
+
+.fade-in-if-in-view.in-view-left {
+    animation: fadeIn 1.9s ease-out forwards;
+}
+.fly-in-if-in-view.in-view-left {
+    animation: flyInFromLeft 1s ease-out forwards;
+}
+
+.fade-in-if-in-view.in-view-right {
+    animation: fadeIn 1.9s ease-out forwards;
+}
+.fly-in-if-in-view.in-view-right {
+    animation: flyInFromRight 1s ease-out forwards;
+}
+
+.fly-in-if-in-view.in-view-center {
+    animation: flyInFromTop 1s ease-out forwards
+}
+
+.fade-in-if-in-view.in-view-center {
+    animation: fadeIn 1.9s ease-out forwards;
+
+}
+
+.fade-in {
+    animation: fadeIn 2.9s ease-in forwards;
+    opacity: 0;
+}
+
+.fade-in-fast {
+    animation: fadeIn .5s ease-in forwards;
+    opacity: 0;
+}
+
+.fade-in-middle {
+    animation: fadeIn 1.7s ease-in forwards;
+    opacity: 0;
+}
+
+.nav-fade-in {
+    animation: fadeIn .4s ease-in forwards;
+}
+
+.nav-fade-out {
+    animation: fadeOut .4s ease-in forwards;
+}
+
+.out-of-view {
+    opacity: 0;
+    transform: translateY(0%) translateY(0%);
+    transition: transform 0.2s;
+    animation: fadeOut 0.7s ease-out forwards;
+}
